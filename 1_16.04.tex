@@ -1,0 +1,235 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt,a4paper]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{16. April 2018}
+    \maketitle
+\fi
+
+    \section{Folgen}
+    \subsection{Definition}
+    Eine Folge $(a_n)_{n \in \IN}$ ist eine Abbildung von den natürlichen Zahlen
+    $(\IN)$ in eine beliebige Menge $M$ (oft $M \subseteq \IR$).
+
+    \begin{tabular}{rl}
+        $a_n$:& n-tes Folgenglied \\
+        $n$:& Index
+    \end{tabular}
+
+    Oft ist das erste Folgenglied nicht $a_1$, sondern z.B: $a_7$.
+    
+    \textbf{Schreibweise:} $(a_n)_{n \in \IN}$, $(a_n)_{n \geq n_0}$ oder $(a_n)$
+
+    \subsection{Beispiele}
+    \begin{enumerate}[a)]
+        \item $a_n = c\ \forall n \in \IN$ (konstante Folge)
+        \item $a_n = n$ (Ursprungsgerade)
+        
+        \begin{tikzpicture}
+            \begin{axis}[
+                sequence axis,
+                width = 0.5\textwidth,
+                xmax = 3.5, ymax = 3.5,
+                samples at = {0, ..., 3}
+            ]    
+            \addplot[sequence plot] {x};      
+            \end{axis}
+        \end{tikzpicture}
+
+        \item $a_n = (-1)^n, n \in \IN$ (alternierend)
+
+        \begin{tikzpicture}
+            \begin{axis}[
+                sequence axis,
+                width = 0.5\textwidth,
+                ymin = -1.5, ymax = 1.5,
+                samples at = {0, ..., 5},
+                axis x line = center
+            ]    
+            \addplot[sequence plot] {(-1)^x};         
+            \end{axis}
+        \end{tikzpicture}
+
+        \item $a_n = \frac{1}{n}$ (Nullfolge)
+
+        \begin{tikzpicture}
+            \begin{axis}[
+                sequence axis,
+                width = 0.5\textwidth,
+                ymax = 1.1, ymin = 0,
+                samples at = {1, ..., 10},
+                minor y tick num = 5
+            ]    
+            \addplot[sequence plot] {1/x};         
+            \end{axis}
+        \end{tikzpicture}
+
+        \item \underline{Rekursive Folgen}, z.B: Fiboacci-Folge.
+
+        $f_1 = 1, f_2 = 1, \underbrace{f_{n+1} = f_n + f_{n-1}}_{\text{Rekursionsformel}}$
+
+        $f_3 = 1+1 = 2, f_4 = 3, f_5 = 5, ...$
+
+        \begin{tikzpicture}
+            \begin{axis}[
+                sequence axis,
+                width = 0.5\textwidth,
+                ylabel = {$f_n$},
+                minor y tick num = 5,
+                ymin = 0
+            ]    
+            \addplot[sequence plot] coordinates {
+                (1, 1) (2, 1) (3, 2) (4, 3) (5, 5) (6, 8) (7, 13) (8, 21)
+            };         
+            \end{axis}
+        \end{tikzpicture}
+
+        \item \underline{Exponentielles Wachstum} (z.B von Bakterienstämmen)
+        \begin{tabular}{rl}
+            $q$:  & Wachstumsfaktor \\
+            $X_0$:& Startpopulation
+        \end{tabular}
+
+        \textbf{Explizit:} $X_n = q^n * X_0$
+
+        z.B: $X_0 = 5, q = 2$
+
+        $\rightarrow X_1 = 10, X_2 = 20, X_3 = 40, ...$
+
+        \begin{tikzpicture}
+            \begin{axis}[
+                sequence axis,
+                width = 0.5\textwidth,
+                samples at = {0, ..., 5}
+            ]    
+            \addplot[sequence plot] {2^x * 5};         
+            \end{axis}
+        \end{tikzpicture}
+
+        \item \underline{Logistisches Wachstum}
+        
+        $X_{n+1} = r \cdot X_n \cdot (1 - X_n)$
+
+        \begin{tabular}{rl}
+            $r \in [0, 4]$:   & Wachstums-/Sterbefaktor \\
+            $X_n \in [0, 1]$: & Relative Anzahl der Individuen in Generation $n$
+        \end{tabular}
+
+        Anzahl der Individuen in Generation $n+1$ hängt ab von der aktuellen Populationsgröße
+        $X_n$ und den vorhandenen natürlichen Ressourcen, charakterisiert durch $(1 - X_n)$
+
+        %TODO
+        %Bsp: $r = 2, X_n = 0.8$
+    \end{enumerate}
+
+    \subsection{Definition: Beschränkte und alternierende Folgen}
+
+    Sei $(a_n)_{n \in \IN}$ mit $a_n \in \IR \ \forall n \in \IN.$
+    \begin{enumerate}[a)]
+        \item $(a_n)$ heißt beschränkt $:\eqv \abs{a_n} \leq K$ für ein $K \geq 0$.
+        \item $(a_n)$ heißt alternierend, falls die Folgenglieder abwechselnd positiv
+        und negativ sind.
+    \end{enumerate}
+
+    \subsection{Beispiele}
+    Aus 1.2):
+    \begin{itemize}
+        \item a, c, d, g) sind beschränkt
+        \item b, e) sind unbeschränkt
+        \item c) ist alternierend
+    \end{itemize}
+    
+    \subsection{Definition: Konvergente Folgen}
+    \begin{enumerate}[a)]
+        \item Eine Folge $(a_n)_{n \in \IN}$ reeller Zahlen konvergiert gegen
+        $a \in \IR$, wenn es zu jedem $\epsilon > 0$ ein $N \in \IN$ gibt (das von
+        $\epsilon$ abhängig sein darf), so dass:
+
+        $\abs{a_n-a} < \epsilon \quad \forall n \geq N$
+
+        \textbf{Kurz: } $$\forall \epsilon > 0 \ \exists N \in \IN \ \forall n \geq N: \abs{a_n - a} < \epsilon$$
+    
+        \item $a \in \IR$ heißt Grenzwert oder Limes der Folge. Man schreibt: \\
+        $\lim\limits_{n \to \infty}{a_n = a}$ oder $a_n \to a$ für $n \to \infty$ oder
+        $a_n \xrightarrow[n \to \infty]{} a$ oder $a_n \to a$.
+
+        \item Eine Folge $(a_n)$ mit Limes 0 heißt \underline{Nullfolge}.
+
+        \item Eine Folge die nicht konvergent ist, heißt \underline{divergent}.
+    \end{enumerate}
+
+    \subsection{Bemerkung}
+
+    $a_n \to a$ bedeutet anschaulich:
+    Gibt man eine Fehlerschranke $\epsilon > 0$ vor, so sind ab einem bestimmten
+    $N \in \IN$ alle Folgenglieder weniger als $\epsilon$ von a entfernt. Je kleiner
+    $\epsilon$ gewählt wird, desto größer muss im allgemeinen $N$ gewählt werden.
+    
+    \begin{tikzpicture}
+        \begin{axis}[
+            sequence axis,
+            ytick = {-1, 0, 1},
+            yticklabels = {$a - \epsilon$, $a$, $a + \epsilon$},
+            ymin = -1.5, ymax = 1.5,
+            domain = 0:11,
+            clip = false,
+            width = 0.5\textwidth
+        ]    
+        \addplot[only marks] coordinates {
+            (1, 1.1) (2, -1.2) (3, 0) (4, 1.3) (5, 0.9) (6, -0.4) (7, 0)
+            (8, 0.1) (9, 0.2) (10, 0.1) (11, 0.2)
+        };
+        \addplot[name path = upper] {1};
+        \addplot[name path = lower] {-1};
+        \addplot[pattern = north east lines] fill between [of = lower and upper];
+        
+        \draw [dashed] (5, -1.5) -- (5, 1.5) node [right = 0pt, yshift = -5pt] {$N=5$};
+
+        \draw [decorate, decoration = {brace, amplitude = 10pt, mirror, raise = 4pt}, yshift = 0pt] 
+            (11, -1) -- (11, 1) node [right = 14pt, midway, align = left] {
+                $\epsilon$ -- Umgebung von $a$/ \\
+                $\epsilon$ -- Schlauch
+            };
+        \end{axis}
+    \end{tikzpicture}
+
+    Solch ein $N$ muss sich für jedes noch so kleine $\epsilon$ finden lassen.
+    Ansonsten ist $(a_n)$ divergent.
+
+    \subsection{Beispiele}
+
+    \begin{enumerate}[a)]
+        \item Behauptung: $a_n = \frac{1}{n}, (a_n)_{n \in \IN}$ ist Nullfolge
+
+        Beweis:
+        \begin{itemize}
+            \item Wähle $\epsilon = \frac{1}{10}$. Dann ist für $N > 10$
+           
+            $$\abs{a_n-0} = \abs{\frac{1}{n}} = \frac{1}{n} \underset{N \geq n}{\leq} \frac{1}{N} \underset{N > 10}{<} \frac{1}{10} \quad \forall n \geq N$$
+            \item Allgemein (beliebiges $\epsilon$)
+
+            Sei $\epsilon > 0$. Dann ist für $N > \frac{1}{\epsilon}$
+
+            $$\abs{a_n - 0} = \frac{1}{n} \underset{N \geq n}{\leq} \frac{1}{N} \underset{N > \frac{1}{\epsilon}}{<} \frac{1}{\frac{1}{\epsilon}} \quad \forall n \geq N$$
+        \end{itemize}
+
+        \item Behauptung: $(a_n)_{n \in \IN}$ mit $a_n = \frac{n + 1}{3n}$ hat Limes $a = \frac{1}{3}$.
+
+        Beweis: Sei $\epsilon > 0$. Dann ist für $N \geq \frac{1}{3\epsilon}$
+
+        $$\abs{a_n-n} = \abs{\frac{n+1}{3n}} = \frac{n + 1 - n}{3n} = \frac{1}{3n} \underset{N \geq n}{\leq} \boxed{\frac{1}{3N} < \epsilon} \quad \forall N \geq n$$
+        
+        \item $N$ muss nicht immer optimal gewählt werden.
+
+        $$\frac{1}{n^3+n+5} \xrightarrow[n \to \infty]{} 0$$
+
+        Sei $\epsilon > 0$, für $N > \frac{1}{\epsilon}$
+
+        $$\abs{a_n - a} = \frac{1}{n^3+n+5} \underset{N \geq n}{\leq} \frac{1}{N^3+N+5} < \boxed{\frac{1}{N} < \epsilon}$$
+    \end{enumerate}
+
+\ifdefined\MAINDOC\else
+\end{document}
+\fi

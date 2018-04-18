@@ -1,0 +1,55 @@
+\ProvidesPackage{base}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage[shortlabels]{enumitem}
+\usepackage[parfill]{parskip} % No indentation for new paragraph
+\usepackage{pgfplots}
+
+\pgfplotsset{
+    compat = 1.15,
+    sequence axis/.style = {
+        xlabel = {$n \in \IN$},
+        ylabel = {$a_n$},
+        axis x line = bottom,
+        axis y line = left,
+        axis line style = {->},
+        grid = both,
+        xtick distance = 1
+    },
+    sequence plot/.style = {
+        mark = x,
+        mark size = 4pt,
+        mark options = solid,
+        style = dotted
+    }
+}
+\usetikzlibrary{pgfplots.fillbetween, patterns, tikzmark}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\newcommand{\imp}{\Rightarrow}
+\newcommand{\eqv}{\Leftrightarrow}
+\newcommand{\xor}{\text{ XOR }}
+
+\newcommand{\IN}{\mathbb{N}}
+\newcommand{\IR}{\mathbb{R}}
