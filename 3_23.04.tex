@@ -1,0 +1,159 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt,a4paper]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{23. April 2018}
+    \maketitle
+\fi
+    \begin{enumerate}
+        \item[] % Continue from last page
+        \textbf{Beweis:} Es ist $\abs{x} = 1 + t$ für $t > 0$.
+
+        Für $n > k$:
+        $$\begin{aligned}
+            &\abs{x}^n = (1 + t)^n = \sum_{j=0}^n \underbrace{\binom{n}{j} 1^{n-j} t^j}_{\geq 0} \\
+            &\underset{j=k+1}{\geq} \binom{n}{k+1} t^{k+1} = \frac{n(n-1) \cdot ... \cdot (n-k)}{(k+1)!} \\
+            &= n^{k + 1} \cdot \frac{t^{k + 1}}{(k + 1)!} \pm ... \\
+            &\imp \abs{\frac{n^k}{x^n}} = \frac{n^k}{(1+t)^n} \leq \frac{\cancel{n^k} (k+1)!}{n^{\bcancel{k}+1} t^{k+1} \pm ...} \xrightarrow[n \to \infty]{} 0 \\
+        \end{aligned}$$
+        
+        \item[d)]
+        Sei $x \in \IR_+$. $\left(\frac{x^n}{n!}\right)$ ist Nullfolge, d.h.
+        Fakultät wächst schneller als exponentiell:
+        Sei $m \in \IN$ und $n > m + 1 > x$
+        $$\begin{aligned}
+           &\imp \frac{x^n}{n!} = \frac{x^{n-m}}{n(n-1)\cdot ... \cdot (m+1)} \cdot \boxed{\frac{x^m}{m!}} = c > 0 \\
+           &\leq c \cdot \frac{x^{n-m}}{(m+1)^{n-m}} = c \cdot {\underbrace{\left(\frac{x}{m+1}\right)}_{\text{geom. Folge, }<1}}^{(n-m)} \xrightarrow[\substack{1.13/6, \\ 1.13/7}]{} 0
+        \end{aligned}$$
+    \end{enumerate}
+
+    \subsection{Satz: Einschließungsregel}
+
+    Seien $(a_n), (b_n), (c_n)$ reelle Folgen mit
+    \begin{enumerate}
+        \item $\exists k \in \IN : a_n \leq b_n \leq c_n \quad \forall n \geq k$
+        \item $(a_n), (c_n)$ konvergent und $\lim\limits_{n \to \infty}(a_n) = \lim\limits_{n \to \infty} (c_n)$
+    \end{enumerate}
+    Dann ist auch $(b_n)$ konvergent und $\lim\limits_{n \to \infty}(b_n) = \lim\limits_{n \to \infty} (a_n)$
+
+    \textbf{Beweis: } Sei $a := \lim\limits_{n \to \infty} a_n = \lim c_n$ und $\epsilon > 0$.
+    $$\begin{aligned}
+        \underset{2.}{\imp} N_a, N_c : &\bullet \abs{a_n - a} < \frac{\epsilon}{3} &\forall n \geq N_a \\
+                                       &\bullet \abs{c_n - a} < \frac{\epsilon}{3} &\forall n \geq N_c  
+    \end{aligned}$$
+
+    Aus 1.:
+    $$\begin{aligned}
+        &\abs{b_n - a_n} = b_n - a_n \underset{\tikzmark{a1151}}{\leq} c_n - a_n = \abs{c_n - a_n} \quad \\
+        &\forall n \geq k \\
+        \imp &\abs{b_n - a} \underset{\Delta-Ungleichung}{\leq} \abs{b_n - a_n} + \abs{a_n - a} \overset{\tikzmark{b1151}}{\leq} 
+            \abs{c_n - a_n} + \abs{a_n - a} \\
+        \leq &\underbrace{\abs{c_n - a}}_{\leq \frac{\epsilon}{3}} +
+              \underbrace{\abs{a - a_n}}_{\leq \frac{\epsilon}{3}} +
+              \underbrace{\abs{a_n - a}}_{\leq \frac{\epsilon}{3}} < \epsilon
+              \quad \forall \max\{k, N_a, N-c\} \qed
+    \end{aligned}$$
+    % Arrow 
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[->, line width = 1pt] ([yshift = 4pt]pic cs:a1151) -- ([yshift = -7pt]pic cs:a1151) -| (pic cs:b1151);
+    \end{tikzpicture}
+
+    \subsection{Beispiele}
+    \begin{enumerate}[a)]
+        \item $\sqrt[n]{n} \xrightarrow[n \to \infty]{} 1$, denn:
+
+        Sei $\epsilon > 0$. Da $\frac{n}{(1 + \epsilon)^n} \to 0$ (1.14/c),
+        
+        gibt es $N \in \IN$ mit $\frac{n}{(1 + \epsilon)^n} < 1 \quad \forall n \geq N$.
+        $$\begin{aligned}
+            &\imp (1 + \epsilon)^n > n \quad \forall n \geq N \\
+            &\imp 1 + \epsilon > \sqrt[n]{n}
+        \end{aligned}$$
+        Da einerseits $\sqrt[n]{n} \geq 1 > 1 - \epsilon \ \forall n \in \IN$, ist
+        $$
+            1 + \epsilon > \sqrt[n]{n} > 1 - \epsilon \eqv \abs{\sqrt[n]{n} - 1} < \epsilon \quad \forall n \geq N
+        $$
+
+        \item $\sqrt[n]{x} \to 1 \quad \forall x > 0$
+        $$\begin{aligned}
+            &\text{Sei } x > 0 \imp \exists N \in \IN : \boxed{\frac{1}{n} \leq x \leq n} \quad \forall n \geq N \\
+            &\imp \frac{1}{\sqrt[n]{n}} \leq \sqrt[n]{x} \leq \sqrt[n]{n} \quad \forall n \geq N \\
+            &\imp \frac{1}{\sqrt[n]{n}} \to 1 \text{ und } \sqrt[n]{n} \to 1 \underset{1.15}{\imp} \sqrt[n]{x} \to 1
+        \end{aligned}$$
+    \end{enumerate}
+
+    \subsection{Satz}
+    Sei $(a_n)$ eine Folge nicht negativeer reeller Zahlen mit $a_n \to a$. Dann:
+    \begin{enumerate}
+        \item $\lim\limits_{n \to \infty} \sqrt[m]{a_n} = \sqrt[m]{a_n} \quad \forall m \in \IN$
+        \item $\lim\limits_{n \to \infty} a_n^q = a^q \ \forall q \in \IQ$ mit $q > 0$ (ohne Beweis)
+    \end{enumerate}
+
+    \subsection{Definition: Landau Symbole, O-Notation}
+    Sei $(a_n)$ eine reelle Folge mit $a_n > 0 \quad \forall n \in \IN$.
+    Dann ist
+    \begin{enumerate}[a)]
+        \item $O(A_n) = \left\{(b_n)\ \middle|\left(\frac{b_n}{a_n}\right) \text{beschränkt} \right\}$
+        \item $o(A_n) = \left\{(b_n)\ \middle|\left(\frac{b_n}{a_n}\right) \text{Nullfolge} \right\}$
+    \end{enumerate}
+    
+    [$a_n$ wächst schneller als $b_n$]
+
+    \begin{enumerate}[a), resume]
+        \item $a_n \sim b_n$, falls $\frac{a_n}{b_n} \to 1$
+    \end{enumerate}
+
+    $O, o$ heißen \underline{Landau-Symbole}
+
+    \subsection{Beispiele}
+    \begin{itemize}
+        \item $(2n^2 + 3n + 1) \in O(n^2)$
+        \item $(2n^2 + 3n + 1) \in o(n^3)$
+        \item $(n_3) \in o(2^n)$
+        \item $n! \sim \sqrt{2 \pi n} \left(\frac{n}{e}\right)^n$ (Stirlingsche Formel)
+        \item $O(1)$ -- Menge aller beschränkten Folgen
+        \item $o(1)$ -- Menge aller Nullfolgen
+    \end{itemize}
+
+    \subsection{Definition: Monotonie}
+
+    Eine Folge reeller Zahlen $(a_n)$ heißt
+    \begin{enumerate}[a)]
+        \item (streng) monoton steigend/wachsend, falls
+
+        $a_n \geq(>) \ a_n \quad \forall n \in \IN$
+        
+        Schreibweise: $(a_n) \nearrow$ (monoton wachsend)
+        \item (streng) monoton fallend, falls
+
+        $a_n \leq(<) \ a_n \quad \forall n \in \IN$
+        
+        Schreibweise: $(a_n) \searrow$ (monoton fallend)
+    \end{enumerate}
+
+    \subsection{Beispiele}
+    \begin{itemize}
+        % TODO: Plot?
+        \item $(a_n)$ mit $a_n = \frac{1}{n}$ streng monoton fallend
+        \item $(a_n)$ mit $a_n = 1$ monoton steigend und fallend
+        \item $(a_n)$ mit $a_n = (-1)^n$ nicht monoton
+    \end{itemize}
+
+    \subsection{Definition}
+    Eine reelle Folge $(a_n)$ heißt nach oben (unten) beschränkt, falls
+    $\{a_n | n \in \IN\}$ von oben (unten) beschränkt ist.
+
+    \subsection{Satz: Monotone Konvergenz}
+
+    Sei $(a_n)$ reelle Folge:
+    \begin{itemize}
+        \item Falls $(a_n) \nearrow$ und nach oben beschränkt, so konvergiert \\
+        $(a_n)$ gegen $\sup\{a_n | n \in \IN\}$
+        \item Falls $(a_n) \searrow$ und nach unten beschränkt, so konvergiert \\
+        $(a_n)$ gegen $\inf\{a_n | n \in \IN\}$
+    \end{itemize}
+\ifdefined\MAINDOC\else
+\end{document}
+\fi

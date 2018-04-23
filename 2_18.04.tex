@@ -82,7 +82,7 @@
     Dann gilt:
     \begin{enumerate}[1.)]
         \item $\lim\limits_{n \to \infty}(a_n + b_n) = a + b$
-        \item $\lim\limits_{n \to \infty}(\Lambda \cdot a_n) = \lambda \cdot a \quad \forall \lambda \in \IR $
+        \item $\lim\limits_{n \to \infty}(\lambda \cdot a_n) = \lambda \cdot a \quad \forall \lambda \in \IR $
         \item $\lim\limits_{n \to \infty}(a_n \cdot b_n) = a \cdot b$
         \item $$\begin{aligned}
             b \neq 0 \imp & \bullet \: \exists k \in \IN : b_n \neq 0 \: \forall n \geq k \\
@@ -158,7 +158,7 @@
     \subsection{Beispiele: Rechenregeln}
     \begin{enumerate}[a)]
         \item $$\begin{aligned}
-            \frac{(-1)^n + 5}{n} &= ((-1)^n + 5) \cdot \frac{1}{n} \xrightarrow{n \to \infty}{} 0 \text{ wegen 1.13/6} \\
+            \frac{(-1)^n + 5}{n} &= ((-1)^n + 5) \cdot \frac{1}{n} \xrightarrow[n \to \infty]{} 0 \text{ wegen 1.13/6} \\
                                  &\bullet \frac{1}{n} \to 0 \\
                                  &\bullet \abs{(-1)^n + 5} \leq \abs{(-1)}^n + 5 = 6 \\
                                  &\imp (-1)^n + 5 \text{ beschränkt}
@@ -172,7 +172,7 @@
         \item Sei $x \in \IR$ mit $\abs{x} > 1$ und $k \in \IN_0$.
         
         Dann: $$
-            \frac{\tikzmark{a173}\boxed{n^k}}{\tikzmark{b173}\boxed{X^n}} \xrightarrow{n \to \infty}{} 0
+            \frac{\tikzmark{a173}\boxed{n^k}}{\tikzmark{b173}\boxed{X^n}} \xrightarrow[n \to \infty]{} 0
         $$
         \begin{tikzpicture}[remember picture, overlay]
             \draw[->, line width = 1pt] ([shift = {(-15pt, 15pt)}]pic cs:a173) node[left = 0]{kte Potenz} -- ([shift = {(-1pt, 5pt)}]pic cs:a173);
