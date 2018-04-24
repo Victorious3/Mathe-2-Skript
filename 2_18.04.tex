@@ -141,14 +141,15 @@
             \end{aligned}$$
             \item Z.z: $\left(\frac{a_n}{b_n}\right)_{n \geq k}$ hat $\frac{a}{b}$ als Limes.
             
+            \newtikzmark
             Da $\frac{a_n}{b_n} = a_n \cdot \frac{1}{b_n}$, genügt es wegen 3.) zu zeigen, dass $\frac{1}{b_n} \to \frac{1}{b}$.
             $$\begin{aligned}
-                \text{Sei } \epsilon > 0 &\imp \exists N \in \IN : \underbrace{\abs{b_n - b} < \frac{\epsilon}{2} \cdot \abs{b}^2}_{\tikzmark{a164}} \\
-                &\imp \abs{\frac{1}{b_n} - \frac{1}{b}} = \abs{\frac{b - b_n}{b \cdot b_n}} \underset{(**)}{<} \frac{2}{\abs{b}^2} \cdot \abs{b - b_n} \tikzmark{b164} < \epsilon \quad \forall n \geq N
+                \text{Sei } \epsilon > 0 &\imp \exists N \in \IN : \underbrace{\abs{b_n - b} < \frac{\epsilon}{2} \cdot \abs{b}^2}_{\tikzmark{a}} \\
+                &\imp \abs{\frac{1}{b_n} - \frac{1}{b}} = \abs{\frac{b - b_n}{b \cdot b_n}} \underset{(**)}{<} \frac{2}{\abs{b}^2} \cdot \abs{b - b_n} \tikzmark{b} < \epsilon \quad \forall n \geq N
             \end{aligned}$$
             % Arrow 
             \begin{tikzpicture}[remember picture, overlay]
-                \draw[->, line width = 1pt] ([yshift = 7pt]pic cs:a164) -- (pic cs:a164) -| ([shift = {(7pt, 7pt)}]pic cs:b164);
+                \draw[->, line width = 1pt] ([yshift = 7pt]pic cs:a) -- (pic cs:a) -| ([shift = {(7pt, 7pt)}]pic cs:b);
             \end{tikzpicture}
         \end{itemize}
         \item mit 1.12
@@ -171,12 +172,13 @@
         \end{aligned}$$
         \item Sei $x \in \IR$ mit $\abs{x} > 1$ und $k \in \IN_0$.
         
+        \newtikzmark
         Dann: $$
-            \frac{\tikzmark{a173}\boxed{n^k}}{\tikzmark{b173}\boxed{X^n}} \xrightarrow[n \to \infty]{} 0
+            \frac{\tikzmark{a}\boxed{n^k}}{\tikzmark{b}\boxed{X^n}} \xrightarrow[n \to \infty]{} 0
         $$
         \begin{tikzpicture}[remember picture, overlay]
-            \draw[->, line width = 1pt] ([shift = {(-15pt, 15pt)}]pic cs:a173) node[left = 0]{kte Potenz} -- ([shift = {(-1pt, 5pt)}]pic cs:a173);
-            \draw[->, line width = 1pt] ([shift = {(-15pt, -5pt)}]pic cs:b173) node[left = 0]{exponentielles Wachstum} -- ([shift = {(-1pt, 5pt)}]pic cs:b173);
+            \draw[->, line width = 1pt] ([shift = {(-15pt, 15pt)}]pic cs:a) node[left = 0]{kte Potenz} -- ([shift = {(-1pt, 5pt)}]pic cs:a);
+            \draw[->, line width = 1pt] ([shift = {(-15pt, -5pt)}]pic cs:b) node[left = 0]{exponentielles Wachstum} -- ([shift = {(-1pt, 5pt)}]pic cs:b);
         \end{tikzpicture}
     \end{enumerate} 
 \ifdefined\MAINDOC\else

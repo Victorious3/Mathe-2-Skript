@@ -12,6 +12,7 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage[parfill]{parskip} % No indentation for new paragraph
 \usepackage{pgfplots}
+\usepackage{ifthen}
 
 \pgfplotsset{
     compat = 1.15,
@@ -46,6 +47,13 @@
 \let\oldnorm\norm
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 \makeatother
+
+% Tikzmarker scoping
+\newcounter{TikzMarkerPicture}
+\newcommand{\newtikzmark}[1]{
+    \stepcounter{TikzMarkerPicture}
+    \tikzset{tikzmark suffix={-\theTikzMarkerPicture}}
+}
 
 \newcommand{\imp}{\Rightarrow}
 \newcommand{\eqv}{\Leftrightarrow}

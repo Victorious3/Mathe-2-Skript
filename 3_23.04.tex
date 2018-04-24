@@ -44,11 +44,12 @@
                                        &\bullet \abs{c_n - a} < \frac{\epsilon}{3} &\forall n \geq N_c  
     \end{aligned}$$
 
+    \newtikzmark
     Aus 1.:
     $$\begin{aligned}
-        &\abs{b_n - a_n} = b_n - a_n \underset{\tikzmark{a1151}}{\leq} c_n - a_n = \abs{c_n - a_n} \quad \\
+        &\abs{b_n - a_n} = b_n - a_n \underset{\tikzmark{a}}{\leq} c_n - a_n = \abs{c_n - a_n} \quad \\
         &\forall n \geq k \\
-        \imp &\abs{b_n - a} \underset{\Delta-Ungleichung}{\leq} \abs{b_n - a_n} + \abs{a_n - a} \overset{\tikzmark{b1151}}{\leq} 
+        \imp &\abs{b_n - a} \underset{\Delta-Ungleichung}{\leq} \abs{b_n - a_n} + \abs{a_n - a} \overset{\tikzmark{b}}{\leq} 
             \abs{c_n - a_n} + \abs{a_n - a} \\
         \leq &\underbrace{\abs{c_n - a}}_{\leq \frac{\epsilon}{3}} +
               \underbrace{\abs{a - a_n}}_{\leq \frac{\epsilon}{3}} +
@@ -57,7 +58,7 @@
     \end{aligned}$$
     % Arrow 
     \begin{tikzpicture}[remember picture, overlay]
-        \draw[->, line width = 1pt] ([yshift = 4pt]pic cs:a1151) -- ([yshift = -7pt]pic cs:a1151) -| (pic cs:b1151);
+        \draw[->, line width = 1pt] ([yshift = 4pt]pic cs:a) -- ([yshift = -7pt]pic cs:a) -| (pic cs:b);
     \end{tikzpicture}
 
     \subsection{Beispiele}
