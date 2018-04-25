@@ -1,0 +1,176 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt,a4paper]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{25. April 2018}
+    \maketitle
+\fi
+    \textbf{Beweis: }
+    \begin{enumerate}
+        \item Sei $(a_n)\nearrow$ und nach oben beschränkt
+
+        und seien $a = \sup\{a_n|n \in \IN\}$ und $\epsilon > 0$.
+
+        $\imp a_n \leq a \quad \forall n \in \IN$
+
+        $a$ kleinste obere Schranke
+
+        $\imp a - \epsilon$ keine obere Schranke.
+
+        $\imp \exists N \in \IN : a - \epsilon < a_N \leq a$
+
+        $\underset{\substack{a_n \geq a_N \\ \forall n \geq N}}{\imp} \abs{a_n - a} = a - a_n \leq a - a_N$
+        
+        $\imp a_n \to a$
+        \item analog $\qed$
+    \end{enumerate}
+
+    \subsection{Bernoulli-Ungleichung}
+    Im folgenden Beispiel wird die Bernoulli-Ungleichung benötigt:
+    $$(1 + h)^n \geq 1 + nh \quad \forall h \geq -1 \forall n \in \IN$$
+    Beweis mit vollständiger Induktion
+
+    \subsection{Beispiel: Folgen mit Grenzwert $e$}
+    % a_n = (1 + 1/n)^n
+    % b_n = (1 + 1/n)^(n + 1)
+    \begin{tikzpicture}
+        \begin{axis}[
+            sequence axis,
+            width = 0.8\textwidth,
+            height = 6cm,
+            samples at = {1, ..., 20},
+            xtick = {1, 5, 10, 15, 20},
+            clip = false
+        ]    
+        \addplot[color = red] {(1 + 1/x)^x};
+        \addplot[color = blue] {(1 + 1/x)^(x + 1)};
+        \draw (1, 2.71) -- (20, 2.71) node[xshift = 6pt] {$e$};
+        \legend {
+            $\left(1 + \frac{1}{n}\right)^n$,
+            $\left(1 + \frac{1}{n}\right)^{(n+1)}$
+        }
+        \end{axis}
+    \end{tikzpicture}
+    \begin{itemize}
+        \item $a_n = \left(1 + \frac{1}{n}\right)^n = \left(1 + \frac{n+1}{n}\right)$ ist monoton.
+        
+        Zeigen dazu: $a_n \geq a_{n-1} \left(\eqv \frac{a_n}{a_{n-1}} \geq 1\right)$
+        $$\begin{aligned}
+            \frac{a_n}{a_{n-1}} &= \left(\frac{n+1}{n}\right)^n \cdot \left(\frac{n-1}{n}\right)^{n-1} \\
+            &= \left(\frac{n+1}{n}\right)^n \cdot \left(\frac{n-1}{n}\right)^n \cdot \frac{n}{n-1}
+            = \left(\frac{n^2-1}{n^2}\right)^n \cdot \frac{n}{n-1} \\
+            &= \left(1 - \frac{1}{n^2}\right)^n \left(\frac{n}{n-1}\right) \underset{1.24}{\geq} \underbrace{\left(1 - \frac{1}{n}\right)}_{\frac{n - 1}{n}} \cdot \frac{n}{n-1} = 1 \\
+            h = \frac{1}{n^2}
+        \end{aligned}$$
+
+        \item $b_n = \left(1 + \frac{1}{n}\right)^{1+n} = \left(\frac{n+1}{n}_{n+1}\right)$ ist monoton fallend.
+
+        $$\begin{aligned}
+            \text{Zeige dazu: }
+            &b_n \leq b_{n-1} \left(\eqv \frac{b_n}{b_{n-1}} \leq 1 \right) \\
+            \text{Analog: }
+            &\frac{b_n}{b_{n-1}} = \left(1 + \frac{1}{n^2-1}\right)^n \left(\frac{n}{n+1}\right) \\
+            \text{Wegen } &\left(1 + \frac{1}{n^2-1}\right)^n \underset{1.24}{\geq} 1 + \frac{n}{n^2-1} 
+            \geq \underbrace{1 + \frac{1}{n}}_{\frac{n+1}{n}} \text{ ist } \\
+            &\frac{b_n}{b_{n-1}} \geq \frac{1+1}{n} \cdot \frac{n}{n+1} = 1 \quad (?)
+        \end{aligned}$$
+    \end{itemize}
+
+    In Beispiel 1.27 werden wir sehen, dass
+    $$\lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n$$
+    Der Limes wird als Eulerische Zahl $e$ bezeichnet. Dazu zunächst:
+
+    \subsection{Satz: Intervallschachtelung}
+    Seien $(a_n),  (b_n)$ reelle Folgen mit
+    \begin{itemize}
+        \item $(a_n)\nearrow$, $(b_n)\searrow$
+        \item $a_n \leq b_n \quad \forall n \in \IN$
+        \item $b_n - a_n \to 0$
+    \end{itemize}
+    Dann sind $(a_n), (b_n)$ konvergent und besitzen den selben Limes.
+
+    \textbf{Beweis: } Es ist $a_1 \leq a_n \leq b_n \leq b_1 \quad \forall n \in \IN$
+    
+    \begin{tabular}{rl}
+        $\imp$ & $(a_n)$ hat obere Schranke $b_1$ \\
+        & $(b_n)$ hat untere Schranke $a_1$ \\
+        $\underset{1.23}{\imp}$ & $(a_n), (b_n)$ konvergent.
+    \end{tabular}
+
+    Da $(b_n - a_n)$ Nullfolge, sind auch die Grenzwerte gleich. $\qed$
+
+    \subsection{Beispiel}
+    \begin{itemize}
+        \item $(a_n)\nearrow, (b_n)\searrow$ (siehe 1.25)
+        \item $\underline{(a_n)} = \left(1 + \frac{1}{n}\right)^n \underline{\leq} \left(1 + \frac{1}{n}\right) \cdot a_n = \left(1 + \frac{1}{n}\right)^{n+1} = \underline{b_n}$
+        \item $\lim\limits_{n \to \infty} b_n = \lim\limits_{n \to \infty} \underbrace{\left(1 + \frac{1}{n}\right)}_{\to 1} \cdot a_n \underset{1.13/3}{=} \lim\limits_{n \to \infty} a_n$
+    \end{itemize}
+
+    \subsection{Definition: Eulersche Zahl}
+    $$
+        e := \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n \left(= \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^{n+1} \right)
+    $$
+
+    \subsection{Bemerkung}
+    $(a_n)$ konvergent $\underset{1.8}{\imp} (a_n)$ beschränkt.
+    \textbf{Die Umkehrung gilt nicht!} \\
+    z.B besitzt jedoch $a_n = (-1)^n$ zwei konvergente Teilfolgen mit Limes $+1$ und $-1$.
+
+    \subsection{Definition: Teilfolge}
+    Sei $(a_n)_{n \in \IN}$ eine Folge und $(n_k)_{k \in \IN}$ eine streng monoton steigende Folge
+    von Indizes. Dann heißt die Folge $(a_{n_k})_{k \in \IN}$ Teilfolge von $(a_n)_{n \in \IN}$.
+
+    \subsection{Beispiel}
+    $a_n = (-1)^n$
+    \begin{itemize}
+        \item $n_k = 2k \imp a_{n_k} = a_{2k} = (-1)^{2k} = 1 \quad \forall k \in \IN$
+        \item $n_k = 2k + 1 \imp a_{n_k} = a_{2k + 1} = (-1)^{2k + 1} = -1 \quad \forall k \in \IN$
+    \end{itemize}
+
+    \subsection{Bemerkung}
+    $(a_n)$ konvergiert gegen $a$
+    $\imp$ Jede Teilfolge von $(a_n)$ konvergiert gegen $a$.
+
+    \subsection{Definition: Häufungspunkt (HP)}
+    Sei $(a_n)$ reelle Folge. $h \in \IR$ heißt Häufungspunkt von $(a_n)$, wenn es eine
+    Teilfolge von $(a_n)$ gibt, die gegen $h$ konvergiert.
+
+    \subsection{Beispiel}
+    $(a_n)$ mit $a_n = (-1)^n + \frac{1}{n}$ hat zwei Häufungspunkte: $-1$ und $1$.
+
+    \subsection{Satz: Bonzano-Weierstraß}
+    Sei $(a_n)$ reelle Folge.
+    $(a_n)$ beschränkt $\imp (a_n)$ besitzt konvergente Teilfolge
+
+    \textbf{Beweis: } Konstruiere konvergente Teilfolge $({a_n}_k)_{k \in \IN}$,
+
+    $(a_n)$ beschränkt $\imp \abs{a_n} \leq K \quad \forall n \in \IN$ (K geeignet)
+    
+    $\imp a_n \in \underbrace{[-K, K]}_{= [A_0, B_0]} \quad \forall n \in \IN$
+    \begin{itemize}
+        \item \underline{$k = 1$}: Halbiere $[A_0, B_0]$
+        \begin{itemize}
+            \item Falls in der linken Folgenhälfte unendlich viele Folgeglieder liegen, wähle eines davon aus.
+            \item Falls nicht, liegen in der rechten Hälfte unendlich viele. Wähle eines davon aus.
+        \end{itemize}
+        \item[] Das ausgewählte Folgenglied nennen wir ${a_n}_1$, die Intervallhälfte aus der es stammt
+        $[A_1, B_1]$.
+        \item \underline{$k = 2$}: Halbiere $[A_1, B_1]$. Wende obiges Verfahren an, um
+        ${a_n}_2 \in [A_2, B_2]$ zu bestimmen.
+        \item usw ...
+    \end{itemize}
+    Erhalte Intervallschachtelung mit
+    \begin{itemize}
+        \item $(A_k)\nearrow, (B_k)\searrow$
+        \item $A_k \leq B_k$
+        \item $A_k = B_k = \frac{K}{2^{k-1}} \to 0$
+    \end{itemize}
+    $\underset{1.26}{\imp} \lim\limits_{k \to \infty} A_k = \lim\limits_{k \to \infty} B_k$
+
+    Da $A_k \leq {a_n}_k \leq B_k$, ist $\lim\limits_{n \to \infty} A_k \underset{1.15}{=} \lim\limits_{k \to \infty} (a_{n_k}) \qed$
+
+\ifdefined\MAINDOC\else
+\end{document}
+\fi
