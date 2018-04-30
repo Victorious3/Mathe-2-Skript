@@ -92,11 +92,11 @@
         \item $\lim\limits_{n \to \infty} a_n^q = a^q \ \forall q \in \IQ$ mit $q > 0$ (ohne Beweis)
     \end{enumerate}
 
-    \subsection{Definition: Landau Symbole, O-Notation}
+    \subsection{Definition: Landau Symbole, $\BigO$-Notation}
     Sei $(a_n)$ eine reelle Folge mit $a_n > 0 \quad \forall n \in \IN$.
     Dann ist
     \begin{enumerate}[a)]
-        \item $O(A_n) = \left\{(b_n)\ \middle|\left(\frac{b_n}{a_n}\right) \text{beschränkt} \right\}$
+        \item $\BigO(A_n) = \left\{(b_n)\ \middle|\left(\frac{b_n}{a_n}\right) \text{beschränkt} \right\}$
         \item $o(A_n) = \left\{(b_n)\ \middle|\left(\frac{b_n}{a_n}\right) \text{Nullfolge} \right\}$
     \end{enumerate}
     
@@ -106,7 +106,7 @@
         \item $a_n \sim b_n$, falls $\frac{a_n}{b_n} \to 1$
     \end{enumerate}
 
-    $O, o$ heißen \underline{Landau-Symbole}
+    $\BigO, o$ heißen \underline{Landau-Symbole}
 
     \subsection{Beispiele}
     \begin{itemize}
@@ -114,7 +114,7 @@
         \item $(2n^2 + 3n + 1) \in o(n^3)$
         \item $(n_3) \in o(2^n)$
         \item $n! \sim \sqrt{2 \pi n} \left(\frac{n}{e}\right)^n$ (Stirlingsche Formel)
-        \item $O(1)$ -- Menge aller beschränkten Folgen
+        \item $\BigO(1)$ -- Menge aller beschränkten Folgen
         \item $o(1)$ -- Menge aller Nullfolgen
     \end{itemize}
 
