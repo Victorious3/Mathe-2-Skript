@@ -1,5 +1,5 @@
 \ifdefined\MAINDOC\else
-\documentclass[10pt,a4paper]{article}
+\documentclass[10pt, a4paper, fleqn]{article}
 \usepackage{base}
 
 \begin{document}
@@ -15,12 +15,11 @@
     Zu zeigen:
     $\abs{a_n} \leq K \ \forall a \in \IN$, für ein $K \geq 0$. 
     
-    % TODO: Formatting
     Sei $\epsilon = 1$, $(a_n)$ konvergent. 
-    $$\imp \abs{a_n} = \abs{a_n - a + a} \leq \underbrace{\abs{a_n - a} + \abs{a}}_{\text{Dreiecksungleichung}}
-        < 1 + \abs{a} \ \forall n \geq N$$
+    \[\imp \abs{a_n} = \abs{a_n - a + a} \leq \underbrace{\abs{a_n - a} + \abs{a}}_{\text{Dreiecksungleichung}}
+        < 1 + \abs{a} \ \forall n \geq N\]
     Setze $K = max \{1 + \abs{a}, \abs{a_1}, \abs{a_2}, ..., \abs{a_{N-1}}\}$
-    $$\imp \abs{a_n} \leq K \ \forall n \in \IN \qed$$
+    \[\imp \abs{a_n} \leq K \ \forall n \in \IN \qed\]
 
     \subsection{Bemerkung}
     Wegen 1.8: $(a_n)$ unbeschränkt $\imp (a_n)$ divergent.
@@ -28,22 +27,22 @@
     Unbeschränkte Folgen sind also immer divergent.
 
     \subsection{Beispiel: Geometrische Folge}
-    $$\text{Für } q \in \IR: \lim_{n \to \infty} q^n =
+    \[\text{Für } q \in \IR: \lim_{n \to \infty} q^n =
     \begin{cases}
         0, \text{falls } \abs{q} < 1 \\
         1, \text{falls } q = 1
-    \end{cases}$$
+    \end{cases}\]
     Für $\abs{q} > 1$ oder $q = -1$ ist $(q^n)$ divergent.
 
     \textbf{Beweis:}
     \begin{enumerate}[1.)]
         \item $\abs{q} < 1$. Sei $\epsilon > 0$ beliebig.
         Dann ist
-        $$\begin{aligned}
+        \[\begin{aligned}
             &(q^n - 0) = \abs{q}^n < \epsilon \eqv n \cdot \ln\ \abs{q} < \ln(e) \quad | : \ln(q) < 0 \\
             \eqv &\ n > \frac{\ln(\epsilon)}{\ln\ \abs{q}}
-        \end{aligned}$$
-        $$\text{Für } N > \frac{\ln(\epsilon)}{\ln\ \abs{q}}: \abs{q}^n < \epsilon \quad \forall n \geq N$$
+        \end{aligned}\]
+        \[\text{Für } N > \frac{\ln(\epsilon)}{\ln\ \abs{q}}: \abs{q}^n < \epsilon \quad \forall n \geq N\]
         \item $q = 1. \ q^n = 1 \quad \forall n \in \IN \imp q^n \to 1$
         \item $\abs{q} > 1 \imp (q^n)$ unbeschränkt $\underset{1.9}{\imp} (q^n)$ divergent
         \item $q = -1 \imp q^n = (-1)^n$. Beweis der Divergenz später (Cauchyfolgen)
@@ -66,14 +65,14 @@
     \subsection{Bemerkung: Dreiecksungleichung}
     Um Rechenregeln für Folgen in 1.13 beweisen zu können, braucht man folgende Version der
     $\Delta$-Ungleichung:
-    $$\begin{aligned}
+    \[\begin{aligned}
         &\abs{\abs{a} - \abs{b}} \leq \abs{a-b} \quad \forall a,b \in \IR \text{, da:} \\
         &\bullet\abs{a-b+b} \leq \abs{a-b} + \abs{b} &|\ \abs{-b} \\
         &\eqv \abs{a} - \abs{b} \leq \abs{a-b} \\
         &\bullet\abs{b-a+a} \leq \abs{b-a} + \abs{a} &|\ \abs{-a} \\
         &\eqv \abs{b} - \abs{a} \leq \abs{b-a} \\
         &\boxed{\imp \abs{\abs{a} - \abs{b}} \leq \abs{a-b}}
-    \end{aligned}$$
+    \end{aligned}\]
 
     \subsection{Rechenregeln für Folgen}
     Seien $(a_n), (b_n)$ konvergente Folgen mit $\lim\limits_{n \to \infty} (a_n) = a$ und
@@ -84,10 +83,10 @@
         \item $\lim\limits_{n \to \infty}(a_n + b_n) = a + b$
         \item $\lim\limits_{n \to \infty}(\lambda \cdot a_n) = \lambda \cdot a \quad \forall \lambda \in \IR $
         \item $\lim\limits_{n \to \infty}(a_n \cdot b_n) = a \cdot b$
-        \item $$\begin{aligned}
+        \item $\begin{aligned}[t]
             b \neq 0 \imp & \bullet \: \exists k \in \IN : b_n \neq 0 \: \forall n \geq k \\
                           & \bullet \qt{\frac{a_n}{b_n}}_{n \geq k} \text{ konvergiert gegen } \frac{a}{b}
-        \end{aligned}$$
+        \end{aligned}$
         \item $\lim\limits_{n \to \infty}\abs{a_n} = \abs{a}$
     \end{enumerate}
     Seien weiter $(d_n), (e_n)$ reelle Folgen, $(d_n)$ ist Nullfolge
@@ -98,55 +97,58 @@
     \bigbreak
     \textbf{Beweis:}
     \begin{enumerate}[1.)]
-        \item $$\begin{aligned}
+        \item \[\begin{aligned}
             &\text{Sei } \epsilon > 0 \imp \exists N_a, N_b \in \IN: \\
             &\bullet \abs{a_n - a} \leq \frac{\epsilon}{2} \quad \forall n \geq N_a \\
             &\bullet \abs{b_n - b} \leq \frac{\epsilon}{2} \quad \forall n \geq N_b \\
             &\imp \abs{a_n + b_n - (a + b)} \leq \underbrace{\abs{a_n - a}}_{\leq \frac{\epsilon}{2}} 
             + \underbrace{\abs{b_n - b}}_{\leq \frac{\epsilon}{2}} < \epsilon \\
             &\forall n \geq \max\{N_a,N_b\}
-        \end{aligned}$$
+        \end{aligned}\]
 
         \item \begin{itemize}
             \item Für $\lambda = 0$ gilt auch $\lambda \cdot a_n \to 0 = \lambda \cdot a$ \checkmark
             \item Für $\lambda \neq 0$: Sei $\epsilon > 0$
-            $$\begin{aligned}
+            \[\begin{aligned}
                 &\imp \exists N \in \IN : \abs{a_n - a} \leq \frac{\epsilon}{\abs{x}} \quad \forall n \geq N \\
                 &\imp \abs{\lambda a_n - \lambda a} = \abs{\lambda} \cdot \abs{a_n - a} < \epsilon \quad \forall n > N \checkmark
-            \end{aligned}$$
+            \end{aligned}\]
         \end{itemize}
         
-        % TODO: Formatting
-        \item $$\begin{aligned}
+        \item \[\begin{aligned}
             &\text{Satz 1.8 } \imp (b_n) \text{ beschränkt.} \\
             &\imp \exists k \geq 0: \abs{b_n} \leq k \quad \forall n \in \IN \\
             &\imp \abs{a_n b_n - ab} = \abs{(a_n - a)b_n + a(b_n - b)} \\
             &\leq \abs{a_n-a} \cdot k + \abs{a} \cdot \abs{b_n - b} \quad \text{(*)} \\
-            &\text{Sei } \epsilon > 0 \imp &\exists N_a, N_b \in \IN : \abs{a_n - a} < \frac{\epsilon}{2k} \quad \forall n \geq N_a \\
-            &   &\abs{b_n - b} < \frac{\epsilon}{2\abs{a}} \quad \forall n \geq N_b \\
+        \end{aligned}\]
+        \[\begin{aligned}
+            &\text{Sei } \epsilon > 0 \imp &&\exists N_a, N_b \in \IN : \abs{a_n - a} < \frac{\epsilon}{2k} \quad \forall n \geq N_a \\
+            &   &&\abs{b_n - b} < \frac{\epsilon}{2\abs{a}} \quad \forall n \geq N_b \\
+        \end{aligned}\]
+        \[\begin{aligned} 
             &\underset{(*)}{\imp} \abs{a_n b_n - ab} < \frac{\epsilon}{2k} \cdot k + \abs{a} \cdot \frac{\epsilon}{\abs{a}} = \epsilon \\
             &\forall n \geq \max\{N_a, N_b\}
-        \end{aligned}$$
+        \end{aligned}\]
 
         \item \begin{itemize}
             \item Z.z: $\exists k \in \IN : b_n \neq 0 \quad \forall n \geq k$
 
             Es ist $b \neq 0$ und $\abs{b} > 0$.
 
-            $$\begin{aligned}
+            \[\begin{aligned}
                 &\imp \exists l \in \IN : \underbrace{\abs{b_n - b}}_{\underset{1.12}{\geq} \abs{b} - \abs{b_n}} < \frac{\abs{b}}{2} \quad \forall n \geq b \\
                 &\imp \exists \abs{b} - \abs{b_n} < \frac{\abs{b}}{2} \quad \forall n \geq k \\
                 &\imp \frac{\abs{b}}{2} < \abs{b_n} > 0 \quad \forall n \geq k \ (**) \\
                 &\imp b_n \neq 0 \quad \forall n \geq k
-            \end{aligned}$$
+            \end{aligned}\]
             \item Z.z: $\qt{\frac{a_n}{b_n}}_{n \geq k}$ hat $\frac{a}{b}$ als Limes.
             
             \newtikzmark
             Da $\frac{a_n}{b_n} = a_n \cdot \frac{1}{b_n}$, genügt es wegen 3.) zu zeigen, dass $\frac{1}{b_n} \to \frac{1}{b}$.
-            $$\begin{aligned}
+            \[\begin{aligned}
                 \text{Sei } \epsilon > 0 &\imp \exists N \in \IN : \underbrace{\abs{b_n - b} < \frac{\epsilon}{2} \cdot \abs{b}^2}_{\tikzmark{a}} \\
                 &\imp \abs{\frac{1}{b_n} - \frac{1}{b}} = \abs{\frac{b - b_n}{b \cdot b_n}} \underset{(**)}{<} \frac{2}{\abs{b}^2} \cdot \abs{b - b_n} \tikzmark{b} < \epsilon \quad \forall n \geq N
-            \end{aligned}$$
+            \end{aligned}\]
             % Arrow 
             \begin{tikzpicture}[remember picture, overlay]
                 \draw[->, line width = 1pt] ([yshift = 7pt]pic cs:a) -- (pic cs:a) -| ([shift = {(7pt, 7pt)}]pic cs:b);
@@ -158,22 +160,22 @@
 
     \subsection{Beispiele: Rechenregeln}
     \begin{enumerate}[a)]
-        \item $$\begin{aligned}
+        \item \[\begin{aligned}
             \frac{(-1)^n + 5}{n} &= ((-1)^n + 5) \cdot \frac{1}{n} \xrightarrow[n \to \infty]{} 0 \text{ wegen 1.13/6} \\
                                  &\bullet \frac{1}{n} \to 0 \\
                                  &\bullet \abs{(-1)^n + 5} \leq \abs{(-1)}^n + 5 = 6 \\
                                  &\imp (-1)^n + 5 \text{ beschränkt}
-        \end{aligned}$$
-        \item $$\begin{aligned}
+        \end{aligned}\]
+        \item \[\begin{aligned}
             &\frac{3n^2 + 1}{-n^2 + n} \to -3 \text{, denn } \lim_{n \to \infty}
             \frac{3n^2 + 1}{-n^2 + n} = \lim_{n \to \infty} \frac{\cancel{n^2}\qt{3 + \frac{1}{n^2}}}{\cancel{n^2}\qt{-1 + \frac{1}{n}}} \\
             &\underset{1.13/4}{=} \frac{\lim 3 + \frac{1}{n^2}}{\lim -1 + \frac{1}{n}}
             \underset{1.13/1}{=} \frac{3 + \lim \frac{1}{n^2}}{-1 + \lim \frac{1}{n}} = \frac{3}{-1} = -3
-        \end{aligned}$$
+        \end{aligned}\]
         \item Sei $x \in \IR$ mit $\abs{x} > 1$ und $k \in \IN_0$.
         
         \newtikzmark
-        Dann: $$
+        \,Dann: $$
             \frac{\tikzmark{a}\boxed{n^k}}{\tikzmark{b}\boxed{X^n}} \xrightarrow[n \to \infty]{} 0
         $$
         \begin{tikzpicture}[remember picture, overlay]
