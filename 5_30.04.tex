@@ -1,0 +1,153 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{30. April 2018}
+    \maketitle
+\fi
+    \subsection{Definition: Limes inferior/superior}
+    $(a_n)$ reelle folge, beschränkt. Dann gibt es einen größten
+    und einen kleinsten Häufungspunkt, den
+    \begin{itemize}
+        \item Limes superior von $(a_n): \limsup\limits_{n\to\infty} (a_n), \varlimsup\limits_{n \to \infty}(a_n)$
+        \item Limes inferior von $(a_n): \liminf\limits_{n\to\infty} (a_n), \varliminf\limits_{n \to \infty}(a_n)$
+    \end{itemize}
+    Ist $(a_n)$ nicht beschränkt, setzt man
+    $$\begin{aligned}
+        & \bullet \varlimsup_{n \to \infty}
+        \begin{cases}
+            +\infty : (a_n) \text{ nicht nach oben beschränkt} \\
+            \underbrace{-\infty : (a_n) \ \forall K > 0 \ \exists N \in \IN : a_n \leq -K \ \forall n \geq N}_{\text{d.h. } a_n \xrightarrow[n \to \infty]{}-\infty}
+        \end{cases} \\
+        & \bullet \varliminf_{n \to \infty}
+        \begin{cases}
+            -\infty : (a_n) \text{ nicht nach oben beschränkt} \\
+            \underbrace{+\infty : (a_n) \ \forall K > 0 \ \exists N \in \IN : a_n \geq K \ \forall n \geq N}_{\text{d.h. } a_n \xrightarrow[n \to \infty]{}\infty}
+        \end{cases}
+    \end{aligned}$$
+
+    \subsection{Bemerkung}
+    \begin{enumerate}[a)]
+        \item $a_n \to \pm\infty$ in obriger Definition bedeutet, dass $(a_n)$ (bestimmt)
+        gegen $\pm \infty$ divergiert. (d.h. es gibt keine weiteren endlichen Häufungspunkte)
+
+        z.B. divergiert $(a_n)$ mit $a_n = (-1)^n$ nicht bestimmt, \\
+        aber $(a_n)$ mit $(a_n) = n$ divergiert bestimmt gegen $\infty$
+
+        \item $-\infty, \infty$ sind keine reellen Zahlen. 
+        Man setzt $\overline{\IR} = \IR \cup \{\infty, -\infty\}$ \\ 
+        mit $-\infty < x < \infty \quad \forall x \in \IR$
+
+        \item In $\overline{\IR}$ besitzt jede Folge sowohl $\limsup$ als auch $\liminf$.
+    \end{enumerate}
+
+    \subsection{Beispiel}
+    \begin{tikzpicture}
+        \begin{axis}[
+            sequence axis,
+            width = 0.8\textwidth,
+            height = 6cm,
+            samples at = {1, ..., 20},
+            xtick = {1, 5, 10, 15, 20},
+        ]    
+        \addplot[sequence plot, only marks] {x*(1+(-1)^x)};
+        \end{axis}
+    \end{tikzpicture}
+
+    $a_n = n \cdot (1 + (-1)^n) = \begin{cases}
+        2n, &\text{ n gerade} \\
+        2n + 1, &\text{ n ungerade}
+    \end{cases}$
+
+    $\liminf (a_n) = 0 \quad \limsup(a_n) = \infty$
+
+    \subsection{Definition: Cauchy-Folgen}
+
+    Sei $(a_n)$ eine Folge. $(a_n)$ heißt Cauchy-Folge (C-F) \\
+    $:\eqv \ \forall \epsilon > 0 \ \exists M \in \IN : \abs{a_n - a_k} < \epsilon \ \forall n,k \geq M$
+
+    \subsection{Satz: Cauchy-Kriterium}
+    Sei $(a_n)$ eine Folge \underline{in $\IR$} \\
+    $(a_n)$ konvergiert $: \eqv (a_n)$ ist Cauchy-Folge
+
+    \textbf{Beweis: }
+    $(\Rightarrow):$ klar \\
+    $(\Leftarrow):$
+    \begin{enumerate}
+        \item Zeige $(a_n)$ beschränkt
+        \[\begin{aligned}
+            &\text{Sei } (a_n) \text{ C-F: } \imp && \exists R \in \IN: \abs{a_n - a_k} < 1 \\
+            &&& \forall n,k \geq R
+        \end{aligned}\]
+        \[\begin{aligned}
+            &\underset{k=R}{\imp} \abs{a_n - a_R} < 1 \quad \forall n \geq \IR \\
+            &\imp a_R - 1 < a_n < a_R + 1 \quad \forall n \geq R \\
+        \end{aligned}\]
+        \[\begin{aligned}
+            \imp &\min\{a_r - 1, a_1, ..., a_{R-1}\} \leq a_n \leq \\
+            &\max\{a_R + 1, a_1, ..., a_{R-1}\} \quad \forall n \in \IN \\
+            \imp &(a_n) \text{ ist beschränkt und besitzt} \\
+            &\text{konvergente Teilfolge } (a_{n_j}) \text{ (1.35) mit} \\
+            &a = \lim_{j \to \infty} a_{n_j}
+        \end{aligned}\]
+        \item $(a_n)$ ist konvergent mit $\lim\limits_{n \to \infty} a_n = a$
+
+        Sei $\epsilon > 0$
+        \[\begin{aligned}
+            &\imp &\bullet \ \exists M \in \IN : \abs{a_n - a_k} < \frac{\epsilon}{2} &\forall n,k \geq M \\
+            &&\bullet \ \exists J \in \IN : \abs{a_{n_j} - a_k} < \frac{\epsilon}{2} &\forall j \geq J
+        \end{aligned}\]
+        Wähle $a_{n_j}$ so, dass $j \geq J$ und $n_j \geq M$.
+        \[
+            \imp \abs{a_n - a} \leq 
+            \underbrace{\abs{a_n - a_{n_j}}}_{< \frac{\epsilon}{2}} +
+            \underbrace{\abs{a_{n_j} - a}}_{< \frac{\epsilon}{2}} < \epsilon \quad \forall n \geq M
+        \]
+    \end{enumerate}
+
+    \subsection{Beispiel}
+    $(a_n)$ mit $a_n = (-1)^n$ ist divergent, \\
+    denn $\abs{a_{n+1} - a_n} = \abs{(-1)^{n+1}- (-1)^n}$ \\
+    $= \abs{(-1)^n} - \abs{-1-1} = 2$
+
+    z.B ist für $\epsilon = 1 \quad \abs{a_{n+1} - a_n} \geq \epsilon \quad \forall n \in \IN$,\\
+    was im Widerspruch zu 1.39 steht.
+
+    \subsection{Definition: Kontraktion}
+    Eine Abbildung $f: [a, b] \to [a, b]$ heißt Kontradiktion, falls $\alpha \in (0,1)$
+    existiert, so dass
+    $$\abs{f(x)-f(y)} \leq \alpha \abs{x - y}$$
+    % TODO: graph
+    z.B: $f(x) = \frac{1}{2}x$ ist Kontraktion mit Kontraktionsfaktor $\frac{1}{2}$.
+
+    \subsection{Banachscher Fixpunktsatz}
+    Sei $f[a,b] \to [a,b]$ eine Kontraktion.
+    Dann:
+    \begin{enumerate}[1.]
+        \item $f$ hat genau einen Fixpunkt $\hat{x} \in \IR$, d.h. \\
+        es git genau ein $\hat{x} \in \IR : f(\hat{x} = \hat{x}$
+        
+        \item Für jeden beliebigen Startwert $X_0 \in [a, b]$ konvergiert \\
+        die durch $X_n := f(X_n + 1)$ definierte Folge $(X_n)$ gegen $\hat{x}$.
+
+        \begin{flushright}
+            (Ohne Beweis)
+        \end{flushright}
+    \end{enumerate}
+
+    \section{Reihen}
+    \subsection*{Grundbegriffe und Beispiele}
+    \subsection{Definition: Reihe}
+
+    \begin{enumerate}[1.]
+        \item Sei $(a_n)_{n \in \IN}$ eine reelle Folge. Die Folge
+        $(S_k)_{k \in \IN}$ mit
+        $$S_k = \sum_{i = 1}^k \delta_i = \delta_1 + ... + \delta_k$$
+        heißt (undendliche) Reihe, mit Schreibweise $\displaystyle\sum_{i=1}^\infty \delta_i$. \\
+        Die Zahl $S_k \in \IR$ heißt k-te \underline{Partialsumme} der Reihe.
+    \end{enumerate}
+\ifdefined\MAINDOC\else
+\end{document}
+\fi
