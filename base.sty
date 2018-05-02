@@ -13,6 +13,7 @@
 \usepackage[parfill]{parskip} % No indentation for new paragraph
 \usepackage{pgfplots}
 \usepackage{ifthen}
+\usepackage{hyperref}
 
 \pgfplotsset{
     compat = 1.15,
@@ -36,6 +37,7 @@
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\qt{\lparen}{\rparen}
 
 % Swap the definition of \abs* and \norm*, so that \abs
 % and \norm resizes the size of the brackets, and the 
@@ -44,8 +46,11 @@
 \let\oldabs\abs
 \def\abs{\@ifstar{\oldabs}{\oldabs*}}
 
-\let\oldnorm\normnewbooleatar
+\let\oldnorm\norm
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+
+\let\oldqt\qt
+\def\qt{\@ifstar{\oldqt}{\oldqt*}}
 \makeatother
 
 % Tikzmarker scoping

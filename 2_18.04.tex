@@ -86,7 +86,7 @@
         \item $\lim\limits_{n \to \infty}(a_n \cdot b_n) = a \cdot b$
         \item $$\begin{aligned}
             b \neq 0 \imp & \bullet \: \exists k \in \IN : b_n \neq 0 \: \forall n \geq k \\
-                          & \bullet \left(\frac{a_n}{b_n}\right)_{n \geq k} \text{ konvergiert gegen } \frac{a}{b}
+                          & \bullet \qt{\frac{a_n}{b_n}}_{n \geq k} \text{ konvergiert gegen } \frac{a}{b}
         \end{aligned}$$
         \item $\lim\limits_{n \to \infty}\abs{a_n} = \abs{a}$
     \end{enumerate}
@@ -139,7 +139,7 @@
                 &\imp \frac{\abs{b}}{2} < \abs{b_n} > 0 \quad \forall n \geq k \ (**) \\
                 &\imp b_n \neq 0 \quad \forall n \geq k
             \end{aligned}$$
-            \item Z.z: $\left(\frac{a_n}{b_n}\right)_{n \geq k}$ hat $\frac{a}{b}$ als Limes.
+            \item Z.z: $\qt{\frac{a_n}{b_n}}_{n \geq k}$ hat $\frac{a}{b}$ als Limes.
             
             \newtikzmark
             Da $\frac{a_n}{b_n} = a_n \cdot \frac{1}{b_n}$, genügt es wegen 3.) zu zeigen, dass $\frac{1}{b_n} \to \frac{1}{b}$.
@@ -166,7 +166,7 @@
         \end{aligned}$$
         \item $$\begin{aligned}
             &\frac{3n^2 + 1}{-n^2 + n} \to -3 \text{, denn } \lim_{n \to \infty}
-            \frac{3n^2 + 1}{-n^2 + n} = \lim_{n \to \infty} \frac{\cancel{n^2}\left(3 + \frac{1}{n^2}\right)}{\cancel{n^2}\left(-1 + \frac{1}{n}\right)} \\
+            \frac{3n^2 + 1}{-n^2 + n} = \lim_{n \to \infty} \frac{\cancel{n^2}\qt{3 + \frac{1}{n^2}}}{\cancel{n^2}\qt{-1 + \frac{1}{n}}} \\
             &\underset{1.13/4}{=} \frac{\lim 3 + \frac{1}{n^2}}{\lim -1 + \frac{1}{n}}
             \underset{1.13/1}{=} \frac{3 + \lim \frac{1}{n^2}}{-1 + \lim \frac{1}{n}} = \frac{3}{-1} = -3
         \end{aligned}$$

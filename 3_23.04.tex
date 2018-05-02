@@ -20,12 +20,12 @@
         \end{aligned}$$
         
         \item[d)]
-        Sei $x \in \IR_+$. $\left(\frac{x^n}{n!}\right)$ ist Nullfolge, d.h.
+        Sei $x \in \IR_+$. $\qt{\frac{x^n}{n!}}$ ist Nullfolge, d.h.
         Fakultät wächst schneller als exponentiell:
         Sei $m \in \IN$ und $n > m + 1 > x$
         $$\begin{aligned}
            &\imp \frac{x^n}{n!} = \frac{x^{n-m}}{n(n-1)\cdot ... \cdot (m+1)} \cdot \boxed{\frac{x^m}{m!}} = c > 0 \\
-           &\leq c \cdot \frac{x^{n-m}}{(m+1)^{n-m}} = c \cdot {\underbrace{\left(\frac{x}{m+1}\right)}_{\text{geom. Folge, }<1}}^{(n-m)} \xrightarrow[\substack{1.13/6, \\ 1.13/7}]{} 0
+           &\leq c \cdot \frac{x^{n-m}}{(m+1)^{n-m}} = c \cdot {\underbrace{\qt{\frac{x}{m+1}}}_{\text{geom. Folge, }<1}}^{(n-m)} \xrightarrow[\substack{1.13/6, \\ 1.13/7}]{} 0
         \end{aligned}$$
     \end{enumerate}
 
@@ -96,8 +96,8 @@
     Sei $(a_n)$ eine reelle Folge mit $a_n > 0 \quad \forall n \in \IN$.
     Dann ist
     \begin{enumerate}[a)]
-        \item $\BigO(A_n) = \left\{(b_n)\ \middle|\left(\frac{b_n}{a_n}\right) \text{beschränkt} \right\}$
-        \item $o(A_n) = \left\{(b_n)\ \middle|\left(\frac{b_n}{a_n}\right) \text{Nullfolge} \right\}$
+        \item $\BigO(A_n) = \left\{(b_n)\ \middle|\qt{\frac{b_n}{a_n}} \text{beschränkt} \right\}$
+        \item $o(A_n) = \left\{(b_n)\ \middle|\qt{\frac{b_n}{a_n}} \text{Nullfolge} \right\}$
     \end{enumerate}
     
     [$a_n$ wächst schneller als $b_n$]
@@ -113,7 +113,7 @@
         \item $(2n^2 + 3n + 1) \in O(n^2)$
         \item $(2n^2 + 3n + 1) \in o(n^3)$
         \item $(n_3) \in o(2^n)$
-        \item $n! \sim \sqrt{2 \pi n} \left(\frac{n}{e}\right)^n$ (Stirlingsche Formel)
+        \item $n! \sim \sqrt{2 \pi n} \qt{\frac{n}{e}}^n$ (Stirlingsche Formel)
         \item $\BigO(1)$ -- Menge aller beschränkten Folgen
         \item $o(1)$ -- Menge aller Nullfolgen
     \end{itemize}

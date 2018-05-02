@@ -48,31 +48,31 @@
         \addplot[color = blue] {(1 + 1/x)^(x + 1)};
         \draw (1, 2.71) -- (20, 2.71) node[xshift = 6pt] {$e$};
         \legend {
-            $\left(1 + \frac{1}{n}\right)^n$,
-            $\left(1 + \frac{1}{n}\right)^{(n+1)}$
+            $\qt{1 + \frac{1}{n}}^n$,
+            $\qt{1 + \frac{1}{n}}^{(n+1)}$
         }
         \end{axis}
     \end{tikzpicture}
     \begin{itemize}
-        \item $a_n = \left(1 + \frac{1}{n}\right)^n = \left(1 + \frac{n+1}{n}\right)$ ist monoton.
+        \item $a_n = \qt{1 + \frac{1}{n}}^n = \qt{1 + \frac{n+1}{n}}$ ist monoton.
         
-        Zeigen dazu: $a_n \geq a_{n-1} \left(\eqv \frac{a_n}{a_{n-1}} \geq 1\right)$
+        Zeigen dazu: $a_n \geq a_{n-1} \qt{\eqv \frac{a_n}{a_{n-1}} \geq 1}$
         $$\begin{aligned}
-            \frac{a_n}{a_{n-1}} &= \left(\frac{n+1}{n}\right)^n \cdot \left(\frac{n-1}{n}\right)^{n-1} \\
-            &= \left(\frac{n+1}{n}\right)^n \cdot \left(\frac{n-1}{n}\right)^n \cdot \frac{n}{n-1}
-            = \left(\frac{n^2-1}{n^2}\right)^n \cdot \frac{n}{n-1} \\
-            &= \left(1 - \frac{1}{n^2}\right)^n \left(\frac{n}{n-1}\right) \underset{1.24}{\geq} \underbrace{\left(1 - \frac{1}{n}\right)}_{\frac{n - 1}{n}} \cdot \frac{n}{n-1} = 1 \\
+            \frac{a_n}{a_{n-1}} &= \qt{\frac{n+1}{n}}^n \cdot \qt{\frac{n-1}{n}}^{n-1} \\
+            &= \qt{\frac{n+1}{n}}^n \cdot \qt{\frac{n-1}{n}}^n \cdot \frac{n}{n-1}
+            = \qt{\frac{n^2-1}{n^2}}^n \cdot \frac{n}{n-1} \\
+            &= \qt{1 - \frac{1}{n^2}}^n \qt{\frac{n}{n-1}} \underset{1.24}{\geq} \underbrace{\qt{1 - \frac{1}{n}}}_{\frac{n - 1}{n}} \cdot \frac{n}{n-1} = 1 \\
             h = \frac{1}{n^2}
         \end{aligned}$$
 
-        \item $b_n = \left(1 + \frac{1}{n}\right)^{1+n} = \left(\frac{n+1}{n}_{n+1}\right)$ ist monoton fallend.
+        \item $b_n = \qt{1 + \frac{1}{n}}^{1+n} = \qt{\frac{n+1}{n}_{n+1}}$ ist monoton fallend.
 
         $$\begin{aligned}
             \text{Zeige dazu: }
-            &b_n \leq b_{n-1} \left(\eqv \frac{b_n}{b_{n-1}} \leq 1 \right) \\
+            &b_n \leq b_{n-1} \qt{\eqv \frac{b_n}{b_{n-1}} \leq 1 } \\
             \text{Analog: }
-            &\frac{b_n}{b_{n-1}} = \left(1 + \frac{1}{n^2-1}\right)^n \left(\frac{n}{n+1}\right) \\
-            \text{Wegen } &\left(1 + \frac{1}{n^2-1}\right)^n \underset{1.24}{\geq} 1 + \frac{n}{n^2-1} 
+            &\frac{b_n}{b_{n-1}} = \qt{1 + \frac{1}{n^2-1}}^n \qt{\frac{n}{n+1}} \\
+            \text{Wegen } &\qt{1 + \frac{1}{n^2-1}}^n \underset{1.24}{\geq} 1 + \frac{n}{n^2-1} 
             \geq \underbrace{1 + \frac{1}{n}}_{\frac{n+1}{n}} \text{ ist } \\
             &\frac{b_n}{b_{n-1}} \geq \frac{1+1}{n} \cdot \frac{n}{n+1} = 1 \quad (?)
         \end{aligned}$$
@@ -104,13 +104,13 @@
     \subsection{Beispiel}
     \begin{itemize}
         \item $(a_n)\nearrow, (b_n)\searrow$ (siehe 1.25)
-        \item $\underline{(a_n)} = \left(1 + \frac{1}{n}\right)^n \underline{\leq} \left(1 + \frac{1}{n}\right) \cdot a_n = \left(1 + \frac{1}{n}\right)^{n+1} = \underline{b_n}$
-        \item $\lim\limits_{n \to \infty} b_n = \lim\limits_{n \to \infty} \underbrace{\left(1 + \frac{1}{n}\right)}_{\to 1} \cdot a_n \underset{1.13/3}{=} \lim\limits_{n \to \infty} a_n$
+        \item $\underline{(a_n)} = \qt{1 + \frac{1}{n}}^n \underline{\leq} \qt{1 + \frac{1}{n}} \cdot a_n = \qt{1 + \frac{1}{n}}^{n+1} = \underline{b_n}$
+        \item $\lim\limits_{n \to \infty} b_n = \lim\limits_{n \to \infty} \underbrace{\qt{1 + \frac{1}{n}}}_{\to 1} \cdot a_n \underset{1.13/3}{=} \lim\limits_{n \to \infty} a_n$
     \end{itemize}
 
     \subsection{Definition: Eulersche Zahl}
     $$
-        e := \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n \left(= \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^{n+1} \right)
+        e := \lim_{n \to \infty} \qt{1 + \frac{1}{n}}^n \qt{= \lim_{n \to \infty} \qt{1 + \frac{1}{n}}^{n+1} }
     $$
 
     \subsection{Bemerkung}
