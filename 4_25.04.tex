@@ -66,15 +66,15 @@
         \end{aligned}$$
 
         \item $b_n = \qt{1 + \frac{1}{n}}^{1+n} = \qt{\frac{n+1}{n}_{n+1}}$ ist monoton fallend.
-
+        % TODO: Please check
         $$\begin{aligned}
             \text{Zeige dazu: }
-            &b_n \leq b_{n-1} \qt{\eqv \frac{b_n}{b_{n-1}} \leq 1 } \\
+            &b_n \leq b_{n-1} \qt{\eqv \frac{b_{n-1}}{b_n} \leq 1 } \\
             \text{Analog: }
-            &\frac{b_n}{b_{n-1}} = \qt{1 + \frac{1}{n^2-1}}^n \qt{\frac{n}{n+1}} \\
+            &\frac{b_{n-1}}{b_n} = \qt{1 + \frac{1}{n^2-1}}^n \qt{\frac{n}{n+1}} \\
             \text{Wegen } &\qt{1 + \frac{1}{n^2-1}}^n \underset{1.24}{\geq} 1 + \frac{n}{n^2-1} 
             \geq \underbrace{1 + \frac{1}{n}}_{\frac{n+1}{n}} \text{ ist } \\
-            &\frac{b_n}{b_{n-1}} \geq \frac{1+1}{n} \cdot \frac{n}{n+1} = 1 \quad (?)
+            &\frac{b_{n-1}}{b_n} \geq \frac{n+1}{n} \cdot \frac{n}{n+1} = 1
         \end{aligned}$$
     \end{itemize}
 
