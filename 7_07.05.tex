@@ -1,0 +1,131 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{7. Mai 2018}
+    \maketitle
+\fi
+    \subsection{Bemerkung: Minorantenkriterium}
+    Unter den selben Voraussetzungen wie in 2.10 erhält man anhand
+    von Kontraposition: Ist $\sum_{i=1}^\infty a_i$ divergent, so ist auch
+    $\sum_{i=1}^\infty b_i$ divergent.
+
+    \subsection{Beispiele}
+    \begin{enumerate}[a)]
+        \item $\displaystyle\sum_{i=1}^\infty \underbrace{\qt{1-\frac{1}{i}}}_{\text{Keine Nullfolge}}$
+        ist divergent. (2.9)
+
+        \item $\displaystyle\sum_{i=1}^\infty \frac{1}{\sqrt{i}}$ ist divergent,
+        da $0 \leq \frac{1}{i} \leq \frac{1}{\sqrt{i}}$ und 
+        $\displaystyle\underbrace{\sum_{i=1}^\infty \frac{1}{i}}_{\mathclap{\text{Harmonische Reihe}}}$ divergent. (2.11)
+        
+        \item $\displaystyle\sum_{i=1}^\infty \frac{(-1)^i}{2^i}$ ist konvergent,
+        weil absolut konvergent. (2.3e, 2.7)
+
+        \item $\displaystyle\sum_{i=0}^\infty \frac{(-1)^i}{i + 1} = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} \pm ...$
+        (alternierende harminische Reihe) ist konvergent, aber nicht absolut konvergent.
+        Die Konvergenz zeigt man mit
+    \end{enumerate}
+
+    \subsection{Satz: Leibniz-Kriterium}
+    Sei $(a_n)$ monoton fallende Nullfolge reeller Zahlen. Dann ist
+    $\sum{i=0}^{2n} (-1)^i a_i$ konvergent.
+    \textbf{Beweis: }
+    Intervallschachtelung (1.26)
+    \[
+        A_n := \sum_{i=0}^{2n-1} (-1)^i a_i \quad B_n := \sum_{i=0}^{2n} (-1)^i a_i
+    \]
+    \[\begin{aligned}   
+        \bullet \ (A_n)\nearrow : A_{n+1} - A_n &= \sum_{i=0}^{2n+1} (-1)^i a_i -
+        \sum_{i=0}^{2n-1} (-1)^n a_i \\
+        &= (-1)^{2n+1} a_{2n+1} + (-1)^{2n} a_{2n} \\
+        &= a_{2n} - a_{2n+1} \geq 0\text{, da } (a_n) \searrow 
+    \end{aligned}\]
+    \[\begin{aligned}
+        \bullet\text{ Analog: } (B_n)\searrow  
+            &\bullet B_n - A_n = a_{2n} \geq 0 \eqv A_n \leq B_n \quad \forall n \in N \\
+            &\bullet B_n - A_n = a_{2n} \to 0
+    \end{aligned}\]
+    $(A_n), (B_n)$ konvergiert mit $\displaystyle \lim_{n \to \infty} A_n = 
+    \lim_{n \to \infty} B_n \imp \sum_{i=1}^\infty (-1)^i a_i$ konvergent.
+
+    \subsection{Satz: Wurzelkriterium}
+    Sei $(a_n)_{n \geq 1}$ mit $a_n \in \IR$. Dann:
+    \begin{itemize}
+        \item $\displaystyle \varlimsup_{n \to \infty} \sqrt[n]{|a_n|} < 1 \imp \sum_{k=1}^\infty |a_k|$ konvergent
+        \item $\displaystyle \varlimsup_{n \to \infty} \sqrt[n]{|a_n|} > 1 \imp \sum_{k=1}^\infty |a_k|$ divergent
+        \item $\displaystyle \varlimsup_{n \to \infty} \sqrt[n]{|a_n|} = 1 \leadsto $ keine allgemeine Aussage für
+        $\sum_{k=1}^\infty a_k$ möglich.
+    \end{itemize}
+
+    \textbf{Beweis: }
+
+    Sei $\displaystyle \varlimsup_{n \to \infty} \sqrt[n]{|a_n|}$
+    \[\begin{aligned}
+        \bullet \ a < 1: &\imp \exists \epsilon > 0: a + \epsilon < 1 \\
+                         &\imp \exists N \in \IN : \sqrt[n]{|a_n|} \leq a + \epsilon \quad \forall n \geq N, \\
+                         &\qquad \text{da } a \text{ größter HP von } \sqrt[n]{|a_n|} \\
+                         &\imp |a_n| \leq (a + \epsilon)^n \quad \forall n \geq N \\
+                         &\imp \sum_{k=N}^\infty \underbrace{(a + \epsilon)^n}_{<1} \text{ (geometrische Reihe)} \\
+                         &\text{ist konvergente Majorante der Reihe } \textstyle{\sum_{k=N}^\infty |a_k|}. \\
+                         &\text{Damit konvergiert auch } \sum_{k=1}^\infty |a_k| = \underset{< \infty}{\boxed{\sum_{k=1}^{N-1} |a_k|}} + \sum_{k=1}^\infty |a_n| \\
+        \bullet \ a > 1: &\imp \sqrt[n]{|a_n|} > 1 \text{ unendlich oft} \\
+                         &\imp |a_n| > 1 \text{ unendlich oft} \\
+                         &\imp (a_n) \text{ keine Nullfolge } \underset{2.9}{\imp}
+                            \sum_{k=1}^\infty a_k \text{ divergent.} \qed
+    \end{aligned}\]
+
+    \subsection{Beispiele}
+    \begin{enumerate}[a)]
+        \item $\displaystyle \sum_{k=0}^\infty \underset{a_k}{\boxed{\frac{k^3}{3^k}}}$ konvergent, da
+        $\displaystyle \varlimsup_{n \to \infty} \frac{\sqrt[n]{n^3}}{\sqrt[n]{3^n}} = 
+        \varlimsup_{n \to \infty} \frac{\qt{\sqrt[n]{n}^3}}{3} = \frac{1}{3} < 1$
+
+        \item $\displaystyle \sum_{k=0}^\infty \frac{1}{k^\alpha}$ (allgemeine harminische Reihe) liefert \\
+        $\displaystyle \varlimsup_{n \to \infty} \frac{1}{\qt{\sqrt[n]{n}^\alpha}} = 1 \quad (\alpha > 0) \to$ keine Aussage möglich.
+    \end{enumerate}
+
+    \subsection{Satz: Quotientenkriterium}
+    Sei $(a_n)_{n \geq 1}$ eine Folge in $\IR$ mit $a_n \neq 0 \quad \forall n \in \IN$. Dann:
+    \begin{itemize}
+        \item $\displaystyle \varlimsup_{n \to \infty} \abs{\frac{a_{n+1}}{a_n}} < 1 \imp \sum_{k=1}^\infty a_k$ absolut konvergent
+        \item $\displaystyle \varlimsup_{n \to \infty} \abs{\frac{a_{n+1}}{a_n}} > 1 \imp \sum_{k=1}^\infty a_k$ divergent
+        \item $\displaystyle \varlimsup_{n \to \infty} \abs{\frac{a_{n+1}}{a_n}} \geq 1$ und $\displaystyle \varliminf_{n \to \infty} \abs{\frac{a_{n+1}}{a_n}} \leq 1 \leadsto$ keine allgemeine Aussage möglich
+    \end{itemize}
+
+    \textbf{Beweis: }
+    \[\begin{aligned}
+        &\bullet \varlimsup_{n \to \infty} \abs{\frac{a_{n+1}}{a_n}} < a < 1 \quad a \in \IR \\
+        &\imp \exists N \in \IN : \abs{\frac{a_{n+1}}{a_n}} \leq a \quad \forall n \geq \IN \\
+        &\imp |a_n| \leq a \cdot |a_{n-1}| \leq a^2 \cdot |a_{n-2}| \leq ... \leq a^{n-N} \cdot |a_N| \quad \forall n \geq \IN \\
+    \end{aligned}\]
+    Da $\displaystyle \sum_{n=N}^\infty a^{n-N} |a_N| = \frac{|a_N|}{a^N} \sum_{n=N}^\infty a^n$ konvergiert (geometrische Reihe), folgt mit 
+    
+    Majorantenkriterium, dass $\sum_{n=N}^\infty |a_n|$ und somit $\sum_{n=1}^\infty |a_n|$ konvergent ist.
+    \[\begin{aligned}
+        &\bullet \varlimsup_{n \to \infty} \abs{\frac{a_{n+1}}{a_n}} > 1 \imp \exists N \in \IN : \abs{\frac{a_{n+1}}{a_n}} \geq 1 \quad \forall n \geq N \\
+        &\imp |a_n| \geq |a_{n-1}| \geq ... \geq |a_N| > 0 \\
+        &\imp (a_n) \text{ keine Nullfolge} \qed
+    \end{aligned}\]
+    
+    \subsection{Beispiele}
+    \begin{enumerate}[a)]
+        \item $\displaystyle \sum_{k=1}^\infty \frac{2^k}{k!}$ konvergiert, da $\displaystyle \abs{\frac{a_{n+1}}{a_n}} = \frac{2^{\bcancel{n+1}}}{(n+1)\cancel{!}} 
+        \cdot \frac{\cancel{n!}}{\bcancel{2^n}} = \frac{2}{n+1} \xrightarrow[n \to \infty]{} 0$ \\
+        $\displaystyle \imp \lim_{n \to \infty} \abs{\frac{a_{n+1}}{a_n}} = 0 < 1$
+
+        \item Wie in 2.15b ist für $\displaystyle \sum_{k=1}^\infty \frac{1}{k^\alpha} \quad (\alpha > 0)$ keine Aussage möglich, \\
+        da $\displaystyle \abs{\frac{a_{n+1}}{a_n}} = \frac{n^\alpha}{(n+1)^\alpha} = \qt{\frac{n}{n+1}}^\alpha \xrightarrow[n \to \infty]{} 1$
+
+        und somit $\displaystyle \varlimsup_{n \to \infty} \abs{\frac{a_{n+1}}{a_n}} = \varliminf_{n \to \infty} \abs{\frac{a_{n+1}}{a_n}} = 1$
+    \end{enumerate}
+
+    \subsection{Bemerkung}
+    Mit dem Verdichtungssatz von Cauchy (den wir hier nicht zitieren), kann man zeigen, dass die allgemeine
+    harmonische Reihe $\sum_{k=1}^\infty \frac{1}{k^\alpha}$ für $0 < \alpha < 1$ divergiert und für
+    $\alpha > 1$ konvergiert.
+\ifdefined\MAINDOC\else
+\end{document}
+\fi
