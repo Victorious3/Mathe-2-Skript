@@ -1,0 +1,124 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{9. Mai 2018}
+    \maketitle
+
+    
+\fi
+    \subsection{Umordnung von Reihen: Beispiel}
+    Man kan Reihen nicht bedenkenlos umordnen:
+    \begin{itemize}
+        \item $\displaystyle 1 - 1 + \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{3}} - \frac{1}{\sqrt{3}} \pm ...$
+        \[
+            Sn = \begin{cases}
+                0 &\text{falls gerade} \\
+                \sqrt{\frac{2}{n+1}} &\text{falls n ungerade } \xrightarrow[n \to \infty]{} 0
+            \end{cases}
+        \]
+        \item $\displaystyle 1 + \frac{1}{\sqrt{2}} \underbrace{- 1}_3 + \frac{1}{\sqrt{3}} + \frac{1}{\sqrt{4}} - \underbrace{\frac{1}{\sqrt{2}}}_6 + \frac{1}{\sqrt{5}} + \frac{1}{\sqrt{6}} - \underbrace{\frac{1}{\sqrt{3}}}_9 \pm ...$
+        \[
+            S_{3n} = \frac{1}{\sqrt{n+1}} + \frac{1}{\sqrt{n+2}} + ... + \frac{1}{\sqrt{2n}} \geq \frac{n}{\sqrt{2n}} = \sqrt{\frac{n}{2}} \xrightarrow[n \to \infty]{} \infty
+        \]
+    \end{itemize}
+
+    \subsection{Definition: Umordnung}
+    $\sum_{k=1}^\infty b_k$ heißt \underline{Umordnung} von $\sum_{k=1}^\infty a_k$, falls \\
+    eine bijektive Abbildung $\rho: \IN \to \IN$ existiert mit $b_k = a_{\rho(k)} \quad \forall k \in \IN$
+
+    \subsection{Umordnungssatz}
+    Jede Umordnung $\sum_{k=1}^\infty b_k$ einer absolut konvergenten Reihe $\sum_{k=1}^\infty a_k$
+    in $\IR$ ist ebenfalls absolut konvergent und es gilt $\sum_{k=1}^\infty b_k = \sum_{k=1}^\infty a_k$ (ohne Beweis)
+
+    \subsection{Riemannscher Umordnungssatz}
+    Ist $\sum_{k=1}^\infty a_k$ konvergent, aber nicht absolut konvergent, dann existiert zu jedem $s \in \overline{\IR}$ eine Umordnung
+    $\sum_{k=1}^\infty b_k$, mit $\sum_{k=1}^\infty b_k = s$ (ohne Beweis)
+
+    \section{Potenzreihen}
+    \subsection{Grundbegriffe und Beispiel}
+    \begin{enumerate}[a)]
+        \item $P(x) = \sum_{k=0}^\infty x^k$ ist für $|x| < 1$ absolut konvergent (geometrische Reihe), 
+        d.h für $x \in \underbrace{(-1, 1)}_{\mathclap{\text{Konvergenzintervall (3.5)}}}$.
+
+        Für $|x| > 1$ ist $P(x)$ divergent.
+        \item $P(X) = \sum_{k=0}^\infty k!(x-1)^k$ ist für $x \neq 1$ divergent:
+
+        Quotientenkriterium liefert:
+        \[
+            \abs{\frac{(x+1)!(x-1)^{k+1}}{k!(x-1)^k}} = (k+1)(x-1) \xrightarrow[k \to \infty]{} \infty \quad \text{für } x \neq 1
+        \]
+    \end{enumerate}
+    \subsection{Definition: Potenzreihen}
+    Sei $(a_n)_{n \geq 0}$ reelle Folge und seien $x, x_0 \in \IR.$
+    $$P(x) := \sum_{k=0}^\infty a_k (x - x_0)^k$$ 
+    heißt Potenzreihe mit Zentrum $x_0$ und Koeffizienten $a_k$
+
+    \subsection{Bemerkung}
+    \begin{enumerate}[a)]
+        \item In Bsp 3.1a) ist $x_0 = 0$ und $a_k = 1 \ \forall k \in \IN$. \\
+        In 3.1b) ist $x_0 = 1$ und $a_k = k!$
+
+        \item In 3.1a) konvergiert $P(x)$ für $x \in (-1, 1)$,
+        in 3.1b) lediglich für $x = x_0 = 1$. Es wird sich heraussstellen,
+        dass es für eine Potenzreihe $P(x)$ mit Zentrum $x_0$ einen Konvergenzradius
+        $\rho \in \overline{\IR}_+ = [0, \infty) \cup \{\infty\}$ gibt (3.5),
+        so dass $P(x)$ absolut konvergent für $x \in (x_0 - \rho, x_0 + \rho)$,
+        (d.h. $|x-x_0| < \rho$) und divergent für $|x-x_0| > \rho$ ist. (3.7)
+    \end{enumerate}
+
+    Dazu zeigt man zunächst:
+    \subsection{Satz}
+    Sei $P(x) = \sum_{k=0}^\infty a_k(x-x_0)^k$ und $x \in \IR \setminus \{x_o\}$.
+
+    Dann:
+    \begin{enumerate}
+        \item $P(x_1)$ konvergent $\imp P(x)$ ist absolut konvergent $\forall x \in \IR$ mit \\
+        $|x-x_0| < |x_1 - x_0|$
+        \item $P(x_1)$ divergent $\imp P(x)$ ist divergent $\forall x \in \IR$ mit \\
+        $|x-x_0| > |x_1 - x_0|$ 
+    \end{enumerate}
+    \textbf{Beweis: }
+    \begin{enumerate}
+        \item $P(x)$ konvergent $\underset{2.9}{\imp} (a_k(x_1 - x_0)^k)$ Nullfolge
+        \[\begin{aligned}
+            &\imp \exists K \geq 0: |a_k(x_1 - x_0)| \leq K \forall k \in \IN_0 \\
+            &\imp |a_k(x - x_0)^k| = |a_k(x_1 - x_0)^k| \cdot \abs{\frac{x-x_0}{x_1 - x_0}}^k \leq K \cdot \underbrace{\abs{\frac{x-x_0}{x_1 - x_0}}^k}_{\leq 1} \\
+            &\underset{2.10}{\imp} P(x) \text{ absolut konvergent für } |x-x_0| < |x_1 - x_0| \text{ (Majorantenkriterium)}
+        \end{aligned}\]
+        \item Sei $P(x_1)$ divergent und $|x-x_0| > |x_1 - x_0|$. Wäre $P(x)$ konvergent, so wäre
+        wegen 1. auch $P(x_1)$ konvergent. \lightning
+
+        Also: $P(x)$ divergent $\qed$
+    \end{enumerate}
+
+    \subsection{Definition: Konvergenzradius und Intervall}
+    Sei $P(x)$ Potenzreihe mit Zentrum $x_0$. \\
+    $$\rho = \sup\{|x-x_0|: P(x) \text{ mit } x \in \IR \text{ konvergent}\} \in [0, \infty) \cup \{\infty\}$$
+    heißt \underline{Konvergenzradius} von $P(x)$. 
+    
+    Für $\rho \in \IR_+$ heißt $(x_0 - \rho, x_0 + \rho)$ \underline{Konvergenzintervall} von $P(x)$. \\
+    Ist $\rho = \infty$, so konvergiert $P(x) \ \forall x \in \IR$ (3.7)
+
+    \subsection{Beispiel}
+    \begin{enumerate}[a)]
+        \item Für $P(x) = \sum_{k=0}^\infty x^k$ ist $\rho = 1$, denn $(-1, 1)$ ist Konvergenzintervall von $P(x), x_0=0$
+        \item Für $P(x) = \sum_{k=0}^\infty k!(x-x_0)^k$ ist $\rho = 0$, denn $P(x)$ ist nur für $x=x_0=1$ konvergent.
+    \end{enumerate}
+    Aus 3.4 ergibt sich direkt 3.7
+
+    \subsection{Korollar}
+    Sei $P(X)$ Potenzreihe mit Zentrum $x_0$ und Konvergenzradius $\rho$. 
+    
+    Dann:
+    \begin{enumerate}
+        \item $P(X)$ absolut konvergent $\forall x \in \IR$ mit $|x-x_0| < \rho$.
+        \item $P(X)$ divergent $\forall x \in \IR$ mit $|x-x_0| > \rho$.
+        \item {[Falls $|x-x_0| = \rho \leadsto$ keine allgemeine Aussage möglich]}
+    \end{enumerate}
+    
+\ifdefined\MAINDOC\else
+\end{document}
+\fi
