@@ -1,0 +1,110 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{13. Mai 2018}
+    \maketitle
+\fi
+    \section*{Berechnung von Konvergenzradien}
+    \subsection{Satz: Formel von Cauchy-Hademard}
+    
+    Sei $(a_k)_{k \geq 0}$ Folge in $\IR$ und $\displaystyle\lambda := \varlimsup_{k \to \infty} \sqrt[k]{|a_k|}$.
+    $\rho$ sei der Konvergenzradius von $P(x) = \sum\limits_{k=0}^\infty a_k (x-x_0)^k$.
+    
+    Dann:
+    $$
+        \rho = \begin{cases}
+            \frac{1}{\lambda} &\text{, falls } \lambda \in \IR > 0 \\
+            0 &\text{, falls } \lambda = \infty \\
+            \infty &\text{, falls } \lambda = 0
+        \end{cases}
+    $$
+
+    \textbf{Beweis: }
+    Wurzelkriterium: $\displaystyle\lambda := \varlimsup_{k \to \infty} \sqrt[k]{|a_k| \cdot |x-x_0|^k} = \lambda \cdot |x-x_0|$
+    \[\begin{aligned}
+        &\bullet \underbrace{\lambda \cdot |x-x_0}_{\mathclap{\text{D.h. } P(x) \text{ konvergiert}}} | < 1 \eqv |x-x_0| < \frac{1}{\lambda} \quad (= \rho) \\
+        &\bullet \underbrace{\lambda \cdot |x-x_0}_{\mathclap{\text{D.h. } P(x) \text{ divergiert}}} | > 1 \eqv |x-x_0| > \frac{1}{\lambda} \quad (= \rho) \\
+        &\imp \rho \text{ Konvergenzradius von } P(x)
+    \end{aligned}\]
+
+    \subsection{Beispiel}
+    Für welche $x \in \IR$ ist $\sum\limits_{k=1}^\infty \frac{x^k}{k}$ konvergent?
+    \[\begin{aligned}
+        \bullet &\varlimsup_{k \to \infty} \sqrt[k]{\abs{\frac{1}{k}}} = \varlimsup_{k \to \infty} \frac{1}{\sqrt[k]{k}} = 1 = \lambda \\
+        &\underset{3.8}{\imp} \rho = \frac{1}{\lambda} = 1 \\
+        &\imp P(x) \text{ konvergent für } x \in \overbrace{(-1, 1)}^{\mathclap{x_0 - \rho, x_0 + \rho}} \text{ und divergiert für } |x| > 1
+    \end{aligned}\]
+    Untersuche Randwerte für $x = \pm 1$
+    \[\begin{aligned}
+        &\bullet x=  1: &&P( 1)= \sum_{k=1}^\infty \frac{1}{k} \text{ divergent (harmonische Reihe)} \\
+        &\bullet x= -1: &&P(-1)= \sum_{k=1}^\infty \frac{(-1)^k}{k} = \sum_{k=0}^\infty \frac{(-1)^{k+1})}{k+1} \\
+            &&&= -\underbrace{\qt{\sum_{k=0}^\infty \frac{(-1)^k}{k+1}}}_{\mathclap{\text{konvergent (2.12d)}}}
+    \end{aligned}\]
+    $\imp P(-1)$ konvergent
+
+    Insgesamt: $P(x)$ konvergent für $[-1, 1)$, divergent für $|x|>1$ und $x=1$.
+
+    \subsection{Satz: Formel von Euler}
+    Sei $(a_k)_{k>0}$ Folge in $\IR, a_k \neq 0 \quad \forall k \in \IN_0$, \\
+    $\rho$ Konvergenzradius von $P(x) = \sum\limits_{k=0}^\infty a_k (x-x_0)^k$.
+    
+    Ist $\qt{\abs{\frac{a_k}{a_{k-1}}}}_{k \geq 0}$ konvergent oder bestimmt gegen $+\infty$ \\
+    divergent, so ist $\rho = \lim\limits_{k \to \infty}\abs{\frac{a_k}{a_{k+1}}}$
+
+    \textbf{Beweis: } Wende auf $P(x)$ das Quotientenkriterium 2.16 an. $\qed$
+
+    \subsection{Beispiel: Exponentialfunktion}
+    \[\begin{aligned}
+        &\sum_{k=0}^\infty \frac{x^k}{k!} \text{ konvergent } \forall x \in \IR: \\
+        &\abs{\frac{a_k}{a_{k+1}}} = \frac{1}{k\cancel{!}} \cdot \frac{(k+1)\cancel{!}}{1} = k+1 \xrightarrow[k \to \infty]{} \infty \\
+        &\underset{3.10}{\imp} \rho = \infty
+    \end{aligned}\]
+    Man definiert: $\exp: \IR \to \IR$ mit $\displaystyle \exp(x) = \sum_{k=0}^\infty \frac{x^k}{k!}$ (Exponentialreihe)
+
+    Man kann zeigen:
+    \begin{enumerate}
+        \item $\exp(x+y) = \exp(x) + \exp(y) \quad \forall x,y \in \IR$ (mit Cauchy-Produkt, hier nicht)
+        \item $\exp(x) = e^x, e \approx 2,718$ (Eulersche Zahl)
+    \end{enumerate}
+    Aus 2.: $\displaystyle  \qquad e = \exp(1) = \sum_{k=0}^\infty \frac{1}{k!} = 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + ...$
+
+    \subsection*{Exkurs: Wie erhält man $\exp(x) = e^x$ ?}
+    \begin{enumerate}
+        \item Definiere: $\quad e := \lim\limits_{n \to \infty} \qt{1 + \frac{1}{n}}^n$ (1.28)
+        \item Zeige: $\quad \exp(1) = e = \lim\limits_{n \to \infty} \qt{1 + \frac{1}{n}}^n$ (später)
+        \item Zeige, dass Exponentialgesetze für $\exp(x)$ gelten: 
+        
+        $\exp(x+y) = \exp(x) + \exp(y) \quad \forall x,y \in \IR$ (hier nicht)
+        \item Definiere: $\quad e^x = \exp(x) \quad \forall x \in \IR$
+    \end{enumerate}
+    
+    Dies stimmt dann wegen 3. mit den bekannten Rechenregeln für Potenzen und Wurzen überein:
+    \begin{itemize}
+        \item $e^n = (\exp(1))^n = \exp(n)$
+        \item $\qt{\exp\qt{\frac{n}{m}}}^m = exp(n) = e^n \quad \bigm| \sqrt[n]{\ }$
+        
+        $\imp \exp\qt{\frac{n}{m}} = (e^n)^{\frac{1}{m}} = e^\frac{n}{m} \quad \forall n,m \in \IN$
+    \end{itemize}
+    Für irrationale Zahlen wird $e^x$ dann mit Hilfe von $e^x = \exp(x)$ berechnet.
+        
+    So kann auch ein Computer z.B: $e^\pi$ berechnen, indem $\exp(\pi)$ ermittelt wird.
+
+    \subsection{Bemerkung}
+    \begin{enumerate}[a)]
+        \item Außer der Funktion $e^x$ gibt es auch andere Funktionen die sich als Reihe
+        darstellen lassen, z.B wird in Mathe III gezeigt, dass
+        $$\begin{aligned}
+            &cos(x) = \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!} \\
+            &sin(x) = \sum_{n=0}^\infty (-1)^n \frac{x^{2n + 1}}{(2n + 1)!}
+        \end{aligned}$$
+
+        \item Wie Beispiel 3.9 zeigt, ist auf dem Rand des Konvergenzintervalls keine
+        allgemeine Aussage über das Konvergenzverhalten der entsprechenden Potenzreihe möglich.
+        Für $\rho \neq \infty$ müssen die Randwerte gesondert untersucht werden.
+    \end{enumerate}
+\ifdefined\MAINDOC\else
+\end{document}
+\fi
