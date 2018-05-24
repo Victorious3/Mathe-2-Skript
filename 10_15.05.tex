@@ -1,0 +1,155 @@
+% Template file
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{15. Mai 2018} % Date here
+    \maketitle
+\fi
+    \section{Reelle Funktionen}
+    \subsection*{Grundbegriffe und Beispiele}
+    \subsection{Definition: Abbildung}
+
+    Eine Abbildung $f: A \to B$ besteht aus
+    \begin{itemize}
+        \item Dem Definitionsbereich $A$ (Menge $A$)
+        \item Dem Bildbereich $B$ (Menge $B$)
+        \item Einer Zuordnungsvorschrift $f$, die jedem $a \in A$
+        \underline{genau} ein Element $b \in B$ zuordnet.
+    \end{itemize}
+    Man schreibt $b = f(a)$, nennt $b$ Bild/Funktionswert von $a$ und $a$
+    (ein) Urbild von $b$.
+
+    Notation: $f: A \to B, a \mapsto f(a)$
+    \[\begin{aligned}
+        &A&=&\text{ Menge aller Studenten von Mathe II} \\
+        &B&=&\text{ \{Raucher, Nichtraucher\}} \\
+        &f&=&\text{ Zuordnungsvorschrift, die jedem Studenten zuordnet,} \\
+        &&&\text{ ob er/sie raucht/nicht raucht}
+    \end{aligned}\]
+    
+    \subsection{Definition: Reelle Funktion}
+    Eine reelle Funktion einer Veränderlichen ist eine \\ 
+    Abbildung $f: D \to \IR, D \subseteq \IR$.
+
+    \begin{enumerate}[a)]
+        \item $(f \pm g)(x) := f(x) \pm g(x) \quad \forall x \in D$ \\
+        Summe/Differenz von $f$ und $g$
+
+        \item $(f \cdot g) := f(x) \cdot g(x) \quad \forall x \in D$ \\
+        Produkt von $f$ und $g$
+
+        \item Für $g(x) \neq 0 \quad \forall x \in D$ heißt
+        \[
+            \qt{\frac{f}{g}}(x) := \frac{f(x)}{g(x)} \quad \forall x \in D
+        \]
+        Quotient von $f$ und $g$
+
+        \newtikzmark \,
+        \item Komposition/Verknüpfung
+        \[\begin{aligned}
+            &f: D_f \to \IR, g: D_g \to \IR \text{ mit } f(D_f) \subseteq D_g \\
+            &f \circ g: D_f \to \IR \\
+            &(g \circ f)(x) := g(f(x)) \\
+            &\underset{\tikzmark{a}}{D_f} \xrightarrow{f} f(D_f) \subseteq D_g \xrightarrow{g} g(\underset{\tikzmark{b}}{f(D_f)}) \subseteq \IR
+        \end{aligned}\]
+        \begin{tikzpicture}[remember picture, overlay]
+            \draw[->, line width = 1pt] (pic cs:a) to [out = -30, in = -150] node[midway, yshift = -10pt] {$g \circ f$ (``g nach f'')} (pic cs:b);
+        \end{tikzpicture}
+        \bigskip
+    \end{enumerate}
+    \subsection{Beispiel}
+    \[\begin{aligned}
+        &f,g: \IR \to \IR, f(x) = x^2, g(x) = x-1 \\
+        &(f+g)(x) = x^2 + x - 1, (f \cdot g)(x) = x^2 (x-1) \\
+        &\qt{\frac{f}{g}}(x) = \frac{x^2}{x-1} \text{ für } D = \{x \in \IR | x \neq 1\} \text{ Definitionsbereich von } \frac{f}{g}.\\
+        &(f \circ g)(x) = (x-1)^2 \neq \\
+        &(g \circ f)(x) = x^2 - 1
+    \end{aligned}\]
+    \subsection{Definition: Injektiv, Surjektiv, Bijektiv}
+    Sei $f: X \to Y$ eine Abbildung. $f$ heißt:
+    \begin{enumerate}
+        \item Surjektiv $\eqv \ \forall y \in Y \ \exists x \in X: f(x) = y$
+        \item Injektiv $\eqv \ (f(x_1) = f(x_2) \imp x_1 = x_2)$
+        \item Bijektiv $\eqv f$ ist injektiv und surjektiv 
+    \end{enumerate}
+
+    \subsection{Beispiele}
+    \begin{enumerate}[a)]
+        \item $f: \IR \to \IR, f(x) = x^2$ ist
+        \begin{itemize}
+            \item nicht surjektiv: z.B gibt es für $y=-1$ kein $x \in \IR$ mit \\
+            $f(x) = -1$, da $f(x) = x^2 \geq 0 \quad \forall x \in \IR$
+            \item nicht injektiv: $f(-1) = f(1)$ aber $-1 \neq 1$
+        \end{itemize}
+        \item Jedoch ist $f: \IR_{\geq 0} \to \IR_{\geq 0}$ mit $f(x) = x^2$ bijektiv,
+        wie man leicht prüfen kann.
+    \end{enumerate}
+
+    \subsection{Definition: Umkehrfunktion, Bild, Urbild}
+    Sei $f: X \to Y$ eine Abbildung
+    \begin{enumerate}
+        \item Für $X_0 \subseteq X$ heißt $f(X_0) := \{f(x) | x \in X_0\}$ Bild von $X_0$
+        \item Für $Y_0 \subseteq Y$ heißt $f^{-1}(Y_0) := \{x \in X | f(x) \in Y_0\}$ Urbild von $Y_0$
+        \item Ist $f$ bijektiv, so heißt $f^{-1}: Y \to X$ Umkehrfunktion von $f$, \\ 
+        falls $f^{-1} \circ f = \id_x$ und $f \circ f^{-1} = \id_y$
+    \end{enumerate}
+
+    \subsection{Beispiel}
+    \begin{enumerate}[a)]
+        \item $f: \IR_{\geq 0} \to \IR_{\geq 0}, f(x) = x^2$ ist bijektiv (4.6b)
+        
+        Umkehrfunktion: $f^{-1}: \IR_{\geq 0} \to \IR_{\geq 0}, f^{-1}(x) = \sqrt{x}$
+
+        da: $(f \circ f^{-1})(x) = f(f^{-1}(x)) = (\sqrt{x})^2 = \underbrace{x}_{=\id \ \IR_{\geq 0}}$ \\
+        $= f^{-1}(f(x)) = \sqrt{x^2} = (f^{-1} \circ f)(x)$
+
+        \underline{Bemerkung:} Die Umkehrfunktion erhält man durch Spiegelung an der Ursprungsgeraden
+        \item \underline{Achtung:} Das Urbild existiert immer, auch wenn $f^{-1}$ als Umkehrfunktion nicht existiert.
+        
+        \underline{Beispiel:} $f: \IR \to \IR, f(x) = x^2 \quad f^{-1}(\{\frac{1}{4}\}) = \{-\frac{1}{2}, +\frac{1}{2}\}$
+    \end{enumerate}
+
+    \subsection{Definition: Symmetrie}
+    Sei $f(x): \IR \to \IR$ heißt:
+    \begin{itemize}
+        \item Achsensymmetrisch $\eqv f(x) = f(-x) \quad \forall x \in \IR$ (zur y-Achse)
+        \item Punktsymmetrisch $\eqv f(x) = f(-x) \quad \forall x \in \IR$
+    \end{itemize}
+
+    \subsection{Definition: Monotonie}
+    Sei $f: D \to \IR, D \subseteq \IR$. $f$ heißt (streng) monoton wachsend, \\
+    falls $f(x_1) \underset{(<)}{\leq} f(x_2) \quad \forall x_1 \underset{(<)}{\leq} x_2$.
+
+    Falls $f(x_1) \underset{(>)}{\geq} f(x_2) \quad \forall x_1 \underset{(>)}{\geq} x_2$,
+    so heißt $f$ (streng) monoton fallend.
+
+    \subsection{Elementare Funktionen}
+    \begin{enumerate}[a)]
+        \item Konstante Funktion: Sei $c \in \IR \quad f: \IR \to \IR, x \mapsto c$
+        \item Identität: $f: \IR \to \IR, x \mapsto x$
+        \item Betragsfunktion: $f: \IR \to \IR, x \mapsto |x|$ \\ %TODO: Graph?
+            $f$ ist achsensymmetrisch
+        \item Monome/Potenzen: 
+        $f: \IR \to \IR, x \mapsto x^n \quad (n \in \IN)$
+        \begin{itemize}
+            \item $n$ gerade: $f$ achsensymmetrisch, weder injektiv noch surjektiv, nicht
+            monoton, $f(x) \neq 0 \quad \forall x \in \IR$
+            \item $n$ ungerade: $f$ punktsymmetrisch, bijektiv, streng monoton steigend
+        \end{itemize}
+
+        \item Wurzenlfunktion
+        Sind Umkehrfunktion von Monomen
+        \begin{itemize}
+            \item $n$ ungerade
+            $\imp f(x) = x^n$ bijektiv \\
+            $\underset{4.7/3}{\imp}$ Umkehrfunktion existiert und hat die Form
+            
+            $\sqrt[n]{\ }: \IR \to \IR, x \mapsto \sqrt[n]{x}$
+        \end{itemize}
+    \end{enumerate}
+\ifdefined\MAINDOC\else
+\end{document}
+\fi
