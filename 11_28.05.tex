@@ -1,0 +1,178 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{28. Mai 2018}
+    \maketitle
+\fi
+    \begin{enumerate}[a), start = 6]
+        \item[]
+        \begin{itemize}
+            \item $n$ gerade
+            $\imp f: \IR_{\geq 0} \to \IR_{\geq 0}, x \mapsto x^n$ bijektiv
+
+            In diesem Fall hat die Umkehrfunktion die Vorschrift
+            \[
+                \sqrt[n]{\ }: \IR_{\geq 0} \to \IR_{\geq 0}, x \mapsto \underbrace{\sqrt[n]{x}}_{\geq 0}
+            \]
+            \textbf{Achtung: } Wenn n gerade, dann hat $x^n = a$ für gegebenes $a \in \IR$
+            \begin{itemize}
+                \item keine Lösung, falls $a<0$
+                \item genaue eine Lösung, falls $a=0$ und zwar $x=0$
+                \item genau zwei Lösungen, falls $a>0$ und zwar
+
+                $x_1 = \underbrace{\sqrt[n]{a}}_{> 0} \quad x_2 = \underbrace{-\sqrt[n]{a}}_{< 0}$
+            \end{itemize}
+        \end{itemize}
+        \item Polynome: $p: \IR \to \IR, x \mapsto a_n x^n + a_{n-1} x^{n-1} + ... + a_0 x^0
+            = \sum_{k=0}^n a_k x^k$
+
+        $a_0, ..., a_n \in \IR$ heißen Koeffizienten
+
+        Falls $a_n \neq 0$, so heißt $n$ Grad von $p$, man schreibt $\grad(p) = n$
+
+        Für ein Polynom $p$ von Grad $n$ kann man zeigen:
+        \begin{enumerate}[1.]
+            \item $p$ besitzt höchstens $n$ Nullstellen
+            \item Falls $n$ ungerade, ist $p$ surjektiv und besitzt mindestens eine Nullstelle
+            \item Falls $n$ gerade, ist $p$ nicht surjektiv und kann daher auch keine Nullstelle haben
+        \end{enumerate}
+        Bekannte Verfahren zur Berechnung von Nullstellen:
+        \begin{itemize}
+            \item $\grad(p) = 2$: Mitternachtsformel/pq-Formel
+            \item $\grad(p) \geq 3$: Polynomdivision (Mathe III), numerische Verfahren (z.B Newton-Verfahren)
+        \end{itemize}
+        \item Rationale Funktionen:
+
+        Quotienten von Polyonmen $p,q$ mit $f: D \to \IR$
+        \[
+            x \mapsto \frac{p(x)}{q(x)} \qquad D=\{x \in \IR \ | \ q(x) \neq 0\}
+        \]
+
+        \item Logarithmen und Exponentialfunktion:
+
+        \begin{enumerate}[1.]
+            \item der natürliche Logarithmus:
+
+            Man kann zeigen, dass für die Exponentialreihe unter 3.11 gilt:
+            \begin{itemize}
+                \item $\exp(\IR) = \IR_{> 0}$
+                \item $\exp: \IR \to \IR_{> 0}$ ist bijektiv
+            \end{itemize}
+            Die Umkehrfunktion von $\exp(x)$ ist der natürliche Logarithmus:
+            \[
+                \ln: \IR_{> 0} \to \IR, x \mapsto \ln(x)
+            \]
+
+            \item Exponentialfunktion:
+
+            Sei $q > 0, q \neq 0$. Für $x \in \IQ, x = \frac{a}{b}$ ist
+            $q^x = \sqrt[b]{q^a} \quad a \in \IZ, b \in \IN$
+
+            Mit Hilfe der Funktion $\exp(x), \ln(x)$ kann man Exponentialfunktionen
+            zu einer beliebigen gegebenen Basis $q$ und $x \in \IR$ definieren:
+            \[
+                f: \IR \to \IR_{> 0} \quad x \mapsto q^x := \exp(x \cdot \ln(q))     
+            \]
+
+            \item Aus 2. ergibt sich die Regel:
+            \[
+                \ln(q^x) = x \cdot \ln(q) \quad \forall x \in \IR
+            \]
+
+            \item Man kann wegen 2. eine Basis $q$ durch eine beliebige andere Basis ausdrücken,
+            z.B: $q^x = e^{x \cdot \ln(q)}$ (da $\exp(x) = e^x$ (3.11))
+
+            \item Logarithmus zur Basis $q > 0, q \neq 1$: Bilde die Umkehrfunktion
+            von $f(x) = q^x$ (unter 2.)
+            \[
+                \log_q: \IR_{>0} \to \IR \quad x \mapsto \log_q(x)    
+            \]
+
+            \item $log_q$ lässt sich analog zu 4. durch jeden anderen Logarithmus ausdrücken,
+            z.B ist 
+            \[
+                \ln(x) = \ln(q^{\log_q(x)}) \underset{3.}{=} \log_q(x)
+                \eqv \log_q(x) = \frac{\ln(x)}{\ln(y)}
+            \]
+
+            \item Rechenregeln:
+            \begin{itemize}[$-$]
+                \item für $f(x) = q^x$ ergeben sich aus 2. und den Regeln für $\exp(x)$ (3.11):
+                \begin{itemize}[$\bullet$]
+                    \item $q^{x+y} = q^x \cdot q^y \quad \forall x,y \in \IR$
+                    \item $q^{-x} = \dfrac{1}{q^x}$, da $1 = q^{x-x} - q^x \cdot q ^{-x} \quad \forall x \in \IR$
+                    \item $(q^x)^y = q^{x \cdot y}$
+                    \item $(pq)^x = p^x \cdot q^x$
+                \end{itemize}
+                \item für $\log_q(x)$ ergeben sich aus denen für $q^x$:
+                \begin{itemize}[$\bullet$]
+                    \item $\log_q(xy) = \log_q(x) + \log_q(y) \quad \forall x,y > 0$
+                    
+                    denn für $x = q^u, y = q^v$ ist 
+                    
+                    $\log_q(xy) = \log_q(q^{u+v}) = u + v = \log_q(x) + \log_q(y)$
+
+                    \item $\log_q\qt{\dfrac{q}{x}} = -\log_q(x) \quad \forall x > 0$
+
+                    [mit $q^v = \log_q(x^\alpha) \underset{3./ 6.}{=} \alpha \cdot \log_q(x) \quad \forall x > 0, \alpha \in \IR$]
+                \end{itemize}
+            \end{itemize}
+        \end{enumerate}
+        \item Trigonometrische Funktionen:
+
+        \begin{tikzpicture}
+            \begin{axis}[
+                clip = false,
+                width = 0.7\textwidth,
+                height = 0.7\textwidth,
+                xmin = -1.2, xmax = 1.2,
+                ymin = -1.2, ymax = 1.2,
+                xtick distance = 1,
+                ytick distance = 1,
+                axis x line = center,
+                axis y line = center,
+                axis line style = {->}
+            ]
+            \coordinate (A) at (0, 0);
+            \coordinate (B) at ({sin(45)}, {sin(45)});
+            \coordinate (C) at ({cos(45)}, 0);
+
+            \addplot [domain = 0:360, samples = 100] ({cos(x)}, {sin(x))});
+            \draw (A) node[dot]{} 
+                -- (B) node[dot]{} 
+                    node[right, yshift = 5pt] {$P_\varphi = (\cos(\varphi), \sin(\varphi))$}
+                -- (C) node[dot]{}
+                -- (A);
+            \draw pic["$\varphi$", angle radius = 20pt, draw = black] {angle = C--A--B};
+            \draw pic["$\cdot$", draw = black] {angle = B--C--A};
+            
+            % Braces
+            \draw[decorate, decoration = {brace, mirror, amplitude = 10pt, raise = 4pt}] 
+                (A) -- (C) node[midway, yshift = -20pt] {$\cos(\varphi)$};
+            \draw[decorate, decoration = {brace, mirror, amplitude = 10pt, raise = 4pt}]
+                (C) -- (B) node[midway, right, xshift = 12pt] {$\sin(\varphi)$};
+            
+            \end{axis}
+        \end{tikzpicture}
+
+        \begin{tabular}{rl}
+            $\varphi$: & Winkel zwischen x-Achse und Strecke $\overline{0 \ P_\varphi}$ \\
+            $\cos \varphi$: & Ankathete an $\varphi$ in $\Delta(0 \ A_\varphi \ P_\varphi)$ \\
+            $\sin \varphi$: & Gegenkathete an  $\varphi$ in $\Delta(0 \ A_\varphi \ P_\varphi)$
+        \end{tabular}
+
+        Daraus ergeben sich die Winkelfunktionen:
+
+        \begin{tabular}{rl}
+            $\cos:$ & $\IR \to [-1, 1], x \mapsto \cos(x)$ \\
+            $\sin:$ & $\IR \to [-1, 1], x \mapsto \sin(x)$ \\
+            $\tan:$ & $\IR \setminus \{(k + \frac{1}{2}) \pi \ | \ k \in \IZ\} \to \IR, x \mapsto \dfrac{\sin(x)}{\cos(x)}$ \\
+            $\cotan:$ & $\IR \setminus \{k \pi \ | \ k \in \IZ\} \to \IR, x \mapsto \dfrac{\cos(x)}{\sin(x)}$
+        \end{tabular}
+    \end{enumerate} % Enumerumeritemitemize
+\ifdefined\MAINDOC\else
+\end{document}
+\fi

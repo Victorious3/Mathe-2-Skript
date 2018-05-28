@@ -34,7 +34,15 @@
         style = dotted
     }
 }
-\usetikzlibrary{pgfplots.fillbetween, patterns, tikzmark}
+
+\tikzset{
+    dot/.style = {
+        circle,
+        fill,
+        inner sep = 1.5pt
+    }
+}
+\usetikzlibrary{pgfplots.fillbetween, patterns, tikzmark, angles, quotes, babel}
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
@@ -65,10 +73,13 @@
 \newcommand{\eqv}{\Leftrightarrow}
 \newcommand{\xor}{\text{ XOR }}
 \newcommand{\id}{\text{id}}
+\newcommand{\grad}{\text{grad}}
+\newcommand{\cotan}{\text{cotan}}
 
 \newcommand{\IN}{\mathbb{N}}
 \newcommand{\IR}{\mathbb{R}}
 \newcommand{\IQ}{\mathbb{Q}}
+\newcommand{\IZ}{\mathbb{Z}}
 
 \newcommand{\BigO}{\mathcal{O}}
 
