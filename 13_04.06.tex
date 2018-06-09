@@ -1,0 +1,166 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{4. Juni 2018}
+    \maketitle
+\fi
+
+Existenz von $a$ bedeutet: Wenn $x$ nahe genug bei $X_0$ ist, so ist auch $f(x)$ sehr
+nahe an $a$.
+
+\textbf{Beweis: } %TODO: Formatting
+
+$(\Leftarrow):$ Gelte (*). Sei $(X_n)$ in $D \setminus \{X_0\}, X_n \to X_0.$
+Z.z.: $f(X_n) \to a$
+
+Da $X_n \to X_0$, gibt es $N \in \IN$ mit $|X_n - X_0| < \delta \quad \forall n \geq N$ (1.5) \\
+$(*) \imp |f(X_n) - a| < \epsilon \quad \forall n \geq N$ \\
+$\underset{1.5}{\imp} f(X_n) \xrightarrow[n \to \infty]{} q$
+
+$(\Rightarrow):$ Mit Kontraposition: Gelte (*) nicht. \\
+$\imp \exists \epsilon > 0$ derart, dass für jedes $n \in \IN$ ein $X_n \in D \setminus \{X_0\}$
+existiert mit \\
+$|X_n - X_0| < \delta$ und $|f(X_n) - a| \geq \epsilon$. \\
+$\underset{1.5}{\imp} f(X_n) \ \cancel{\to} \ n$ für $X_n \to X_0. \qed$
+
+\subsection{Beispiel}
+$f: \IR \to \IR, f(x) = ax + b$ mit $a, b \in \IR$. Es ist $\lim\limits_{x \to X_0} f(x) = f(X_0).$
+
+Prüfe mit $\epsilon$--$\delta$--Kriterium:
+
+Sei $\epsilon > 0$. Für $\delta = \dfrac{\epsilon}{|a|}$ ist \\
+$|f(x) - f(X_0)| = ax + b - aX_0 - b = |a| \cdot \underbrace{|x - X_0|}_{< \delta} < |a| \cdot \dfrac{\epsilon}{|a|} = \epsilon$
+
+\subsection{Definition: Grenzwert II}
+Sei $X_0$ HP von $D \subseteq \IR$ und $f: D \to \IR$.
+\begin{enumerate}[1.]
+    \item $f$ hat in $X_0$ den Grenzwert $+\infty \ (-\infty) :\eqv f(X_n) \to +\infty (-\infty)$ für
+    jede Folge $(X_n)$ in $D \setminus \{X_0\}$ mit $X_n \to X_0$.
+
+    Schreibweise: $\lim\limits_{x \to X_0} f(x) = +\infty \ (-\infty)$
+
+    \item Ist $\sup D = \infty \ (\inf D = -\infty)$, so hat $f(x)$ \\
+    Limes $a \in \IR$ für $x \to \infty \ (x \to -\infty) :\eqv f(X_n) \to a$ für jede Folge
+    in $D$ mit $X_n \to \infty \ (X_n \to -\infty)$
+\end{enumerate}
+
+\subsection{Beispiele}
+\begin{enumerate}[a)]
+    \item $f: \IR \setminus \{0\} \to \IR, f(x) = \dfrac{1}{x^2}$
+    \begin{enumerate}[1.]
+        \item $\displaystyle \lim_{x \to 0} \frac{1}{x^2} = \infty$, da für jede Nullfolge $(X_n)$ \\
+        in $\IR \setminus \{0\}$ gilt: $\dfrac{1}{\underbrace{{X_n}^2}_{=0}} \xrightarrow[n \to 0]{} + \infty$
+        \item $\displaystyle \lim_{x \to \infty} \frac{1}{x^2} = 0$, da für jedes $(X_n)$ \\
+        in $\IR$ mit $X_n \to \infty: \dfrac{1}{{X_n}^2} \xrightarrow[n \to \infty]{} 0$
+    \end{enumerate}
+
+    \item Es gilt für jedes $m \in \IN_0$:
+    \begin{enumerate}[1.]
+        \item $\displaystyle \lim_{x \to \infty} \frac{\exp(x)}{x^m} = \infty$
+        \item $\displaystyle \lim_{x \to -\infty} x \cdot \exp(x) = 0$
+    \end{enumerate}
+    \textbf{Beweis: }
+    \begin{enumerate}[1.]
+        \item $\displaystyle
+            \exp(x) = \sum_{k = 0}^\infty \frac{x^k}{k!} \geq \frac{X^{m+1}}{(k+1)!} \quad \forall x \geq 0
+        $ \\ $\displaystyle 
+            \imp \frac{\exp(x)}{x^m} \geq \frac{x^{\cancel{m} + 1}}{(k+1)x^{\cancel{m}}} = \frac{x}{(k+1)!} \to \infty
+        $ \\
+        für $x \to \infty$
+        \item $\displaystyle
+            x^m \cdot \exp(x) = \frac{(-1)^m (-x)^m}{\exp(-x)} = (-1)^m \cdot \frac{1}{\boxed{\frac{\exp(-x)}{(-x)^m}} \underset{1.}{\to} \infty}
+        $ \\
+        für $x \to -\infty$
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Definition: Rechts--/Linksseitiger Grenzwert}
+\begin{enumerate}[1.]
+    \item Ist $X_0$ HP von $D \cap (X_0, \infty)$, so hat $f$ in $X_0$ den rechtsseitigen Grenzwert
+    $a \in \IR :\eqv f(X_n) \to a$ für jede Folge $(X_n)$ in $D \cap (X_0, \infty)$ mit $X_n \to X_0$.
+
+    Schreibweise: $\lim\limits_{x \to {X_0}^+} f(x) = a$
+
+    \item Ist $X_0$ HP von $D \cap (-\infty, X_0)$, so hat $f$ in $X_0$ den linksseitigen Grenzwert
+    $a \in \IR :\eqv f(X_n) \to a$ für jede Folge $(X_n)$ in $D \cap (-\infty, X_0)$ mit $X_n \to X_0$.
+
+    Schreibweise: $\lim\limits_{x \to {X_0}^-} f(x) = a$
+\end{enumerate}
+
+\subsection{Beispiel}
+$f: \IR \to \IR \quad x \mapsto \begin{cases}
+    -1 & x < 0 \\
+    1 & x \geq 0
+\end{cases}$
+
+\begin{itemize}
+    \item $\lim\limits_{x \to 0^+} f(x) = 1$, da $f(X_n) = 1 \to 1$ \\
+    für $(X_n)$ in $(0, \infty)$ und $(X_n) \to 0$
+
+    \item $\lim\limits_{x \to 0^-} f(x) = -1$, da $f(X_n) = -1 \to -1$ \\
+    für $(X_n)$ in $(-\infty, 0)$ und $(X_n) \to 0$
+\end{itemize}
+
+\subsection{Bemerkung}
+Aus 5.11 ist ersichtlich: Der Grenzwert einer Funktion $f$ in $X_0$ existiert $\eqv$ Der Links--
+und Rechtsseitige Grenzwert von $f$ in $X_0$ existieren und übereinstimmen.
+
+\subsection{Beispiele}
+\begin{enumerate}[a)]
+    \item $\lim_{x \to 0} \frac{1}{|x|} = \infty$, aber $\lim_{x \to 0} \frac{1}{x}$ existiert nicht, \\
+    da $\lim_{x \to 0^+} \frac{1}{x} = +\infty \neq \lim_{x \to 0^-} \frac{1}{x} = - \infty$
+
+    \item $\lim_{x \to \infty} x = \infty$, $\lim_{x \to -\infty} x = -\infty$
+\end{enumerate}
+
+\subsection{Definition: Stetigkeit}
+Sei $f: D \to \IR, D \subseteq \IR$
+\begin{enumerate}[a)]
+    \item f heißt stetig in $X_0 \in D$, falls
+    \[
+        \underbrace{\lim_{x \to X_0} f(x)}_A \underbrace{= f(X_0)}_B    
+    \]
+    \item $f$ heißt stetig, falls $f$ in jedem Punkt $X_0 \in D$ stetig ist.
+\end{enumerate}
+
+\subsection{Bemerkung}
+\begin{enumerate}[a)]
+    \item In 5.15a prüft man zwei Bedingungen: A) Der Grenzwert von $f$ in $X_0$ existiert und 
+    B) ist gleich $f(X_0)$.
+
+    \item Wegen 5.6 ist $f$ in $X_0 \in D$ stetigt $\eqv$
+    \[
+        \forall \epsilon > 0 \ \exists \delta > 0 \ \forall x \in D: |x-X_0| < \delta
+        \imp |f(x) - f(X_0)| < \epsilon    
+    \]
+\end{enumerate}
+
+\subsection{Beispiele}
+\begin{enumerate}[a)] 
+    \item $f: \IR \to \IR, f(x) = x^2$ ist in jedem $X_0 \in D$ stetig:
+
+    $\lim\limits_{x \to X_0} f(x) = f(X_0)$, da für $(X_n)$ in $D \setminus \{X_0\}$ gilt:
+    \[
+        \underbrace{f(X_n) = X_n^2 \to {X_n}^2 \to {X_0}^2}_{A} \underbrace{= f(x)}_{B}    
+    \]
+    \item Wegen 5.4 ist $f: \IR \to \IR$ mit $f(x) = ax + b$ stetig.
+\end{enumerate}
+
+\subsection{Satz}
+Sei $f: D \to \IR, D \subseteq \IR$.
+
+Gibt es ein k > 0 mit $|f(x) - f(X_0)| \leq k \cdot |x - X_0| \quad \forall x \in D$, \\
+so ist $f$ stetig in $X_0$.
+
+\textbf{Beweis: }
+Sei $\epsilon > 0$. Wähle $\delta = \dfrac{\epsilon}{\delta}$
+\[
+    \imp |f(x) - f(X_0)| \leq k \cdot |\underbrace{x - X_0}_{< \delta}| < k \cdot \delta = \epsilon \qed   
+\]
+
+\ifdefined\MAINDOC\else
+\end{document}
+\fi
