@@ -1,0 +1,205 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{18. Juni 2018}
+    \maketitle
+\fi
+\textbf{Beweis: } $\boxed{1. \Rightarrow 2.}$ Sei $f$ in $x_0$ differenzierbar.
+\[\begin{aligned}
+    &\text{Setze } R(x) = \begin{cases}
+        \dfrac{f(x) - f(x_0)}{x - x_0} - f'(x_0) & x \neq x_0 \\
+        0 & x = x_0
+    \end{cases} \\
+    &\imp \lim_{n \to 0} R(x_0 + h) = \lim_{n \to 0} \frac{f(x_0 + h) - f(x_0)}{h} - f'(x_0) \\
+    &= R(x_0) = 0
+\end{aligned}\]
+$\imp R$ stetig in $x_0, R(x_0) = 0$ und (*) ist erfüllt für $m = f'(x_0)$.
+\bigskip
+
+$\boxed{2. \Rightarrow 1.}$ Gelte (*) für ein $m \in \IR$ und eine in $x_0$ stetige Funktion 
+
+$R: I \to \IR, R(x_0) = 0$.
+\[\begin{aligned}
+    &f(x_0 + h) = f(x_0) + m \cdot h + R(x_0 + h) \cdot h \\
+    &\underset{h \neq 0}{\eqv} \frac{f(x_0 + h) - f(x_0)}{h} = m + R(x_0 + h) \\
+    &\xrightarrow[h \to 0]{} \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h} = m + \underbrace{R(x_0)}_{= 0} \\
+\end{aligned}\]
+da $R(x_0) = 0$ und stetig in $x_0 \qed$
+
+\subsection{Satz}
+Wenn $f$ differenzierbar in $x_0 \in I \imp f$ stetig.
+
+\textbf{Beweis: } Folge aus 6.5/2 (*), da $f$ Summe in $x_0$ stetiger Funktionen.
+
+\subsection{Bemerkung}
+Die Umkehrung von 6.6 gilt nicht. In $x_0 = 0$ hat $f'(x_0) = |x|$ einen Knick:
+\begin{itemize}
+    \item $\lim\limits_{n \to 0^-} \dfrac{|0 + h| - h}{h} = \lim\limits_{h \to 0} \dfrac{-h}{h} = -1$
+    \item $\lim\limits_{n \to 0^+} \dfrac{|0 + h| - h}{h} = \lim\limits_{h \to 0} \dfrac{h}{h} = 1$
+\end{itemize}
+$\underset{5.12}{\imp}$ In $x_0 = 0$ existiert keine Ableitung.
+
+\section*{Rechenregeln}
+
+\subsection{Satz: Ableitungsregeln}
+$f, g: I \to \IR$ differenzierbar in $x \in I$.
+
+Dann sind auch $c \cdot f$ (für $c \in \IR$), $f \pm g, f \cdot g$ und \\
+$\frac{f}{g}$ (für $g(x) \neq 0$) differenzierbar in x mit:
+\begin{enumerate}[a)]
+    \item $(c \cdot f)'(x) = c \cdot f'(x)$
+    \item $(f \pm g)'(x) = f'(x) \pm g'(x)$
+    \item Produktregel:
+    
+    $(f \cdot g)'(x) = f'(x) \cdot g(x) + f(x) \cdot g'(x)$
+    \item Quotientenregel:
+
+    $\qt{\frac{f}{g}}'(x) = \dfrac{f'(x) \cdot g(x) - f(x) \cdot g'(x)}{g^2(x)}$
+\end{enumerate}
+
+\textbf{Beweis: }
+\begin{enumerate}
+    \item[a, b)] Übung
+    \item[c)]
+    \[\begin{aligned}
+        &\frac{(fg)(x + h) - (fg)(x)}{h} \\
+        &= \frac{f(x + h)g(x + h) \overbrace{-f(x)g(x + h) + f(x)g(x + h)}^{= 0} - f(x)g(x)}{h} \\
+        &= \frac{(f(x + h)- f(x)) \cdot g(x + h)}{h} + \frac{f(x) \cdot (g(x + h) - g(x))}{h} \\
+        &\xrightarrow[h \to 0]{} f'(x) \cdot g(x) + f'(x) \cdot g'(x) \quad \text{ (da $g$ stetig)}
+    \end{aligned}\]
+    \item[d)]
+    \[
+        \frac{\qt{\frac{f}{g}}(x + h) - \qt{\frac{f}{g}}(x)}{h} =
+        \frac{f(x+h)g(x) - f(x) - g(x + h)}{h \cdot g(x + h) \cdot g(x)}
+    \]
+    Schiebe wie in c) im Zähler $-f(x + h) g(x + h) + f(x + h) g(x + h)$ ein und erhalte
+    mit $h \to 0$ die Behauptung. $\qed$
+\end{enumerate}
+
+\subsection{Beispiele}
+\begin{enumerate}[a)]
+    \item Wegen 6.8a,d) ist jedes Polynom und jede rationale Funktion differenzierbar.
+    \item $(4x^3 + 7x + 5)' = 12x^2 + 7$
+    \item $\qt{\dfrac{\sin x}{x}}' = \dfrac{\cos x \cdot x - \sin x}{x^2} \quad (x \neq 0)$
+    \item $(\tan x)' = \dfrac{\cos^2 x + \sin^2 x}{\cos^2 x} = \dfrac{1}{\cos^2 x}$
+\end{enumerate}
+
+\subsection{Satz: Kettenregel}
+Die Verknüpfung $f \circ g$ zweier differenzierbarer Funktionen $f, g$ ist differenzierbar und
+es gibt $(f \circ g)' = (f' \circ g) \cdot g'$ bzw $\frac{d}{dx} f(g(x)) = f'(g(x)) \cdot g'(x)$.
+
+\textbf{Beweis: } Mit Substitution:
+
+$\tilde{x} = g(x), \ \tilde{h} = g(x + h) - g(x)$
+
+Es gilt: $h \to 0 \imp \tilde{h} \to 0$ da $g$ stetig. Damit ist
+\[\begin{aligned}
+    &\frac{f(g(x + h)) - f(g(x))}{h} \\
+    &= \frac{f(g(x + h) - g(x) + g(x)) - f(g(x))}{g(x + h) - g(x)} \cdot \frac{g(x + h) - g(x)}{h} \\
+    &= \frac{f(\tilde{x} + \tilde{h}) - f(\tilde{x})}{\tilde{h}} \cdot \frac{g(x + h) - g(x)}{h} \\
+    &\xrightarrow[h \to 0]{} f'(\tilde{x}) \cdot g'(x) = f'(g(x)) \cdot g'(x) \qed
+\end{aligned}\]
+
+\subsection{Beispiel}
+\[
+    (\overbrace{\sin (\underbrace{5x^2}_{g})}^{f \circ g})' = \underbrace{10x}_{g'} \underbrace{\cdot \cos(5x^2)}_{f' \circ g}
+\]
+
+\subsection{Veranschaulichung zur Ableitung der Umkehrfunktion}
+\begin{tikzpicture}[
+    declare function = {
+        f(\x) = 3.289562 + 0.6189274*\x + 0.09662097*\x^2 + 0.01076239*\x^3;
+        t(\x) = 1.304*\x + 2.349;
+        t2(\x) = -0.766871*(2.349 - \x);
+    }
+]
+    \begin{axis}[
+        width = \textwidth,
+        height = \textwidth,
+        axis x line = center,
+        axis y line = center,
+        xtick = {-7}, ytick = {-7},
+        xticklabels = \empty, yticklabels = \empty,
+        ymin = -12, ymax = 12,
+        xmin = -12, xmax = 12,
+        axis line style = {->},
+        domain = -12:12,
+        clip = false
+    ]
+    \addplot[color = black, domain = -11:7.4] {t(x)};
+    \addplot[color = black] {t2(x)};
+    \addplot[dashed, color = black] {x};
+    
+    % Not true, bad
+    %\draw (-7, 0.3) -- (-8, 2) node[yshift = 4pt] {$m = 0$};
+    %\draw (0.3, -7) -- (2, -8) node[right] {$m'$ unendlich groß};
+
+    \draw (-12.5, -9.5) node {$f$};
+    \draw (-7, -12.5) node {$f^{(-1)}$};
+
+    \draw[->] (1.8, 10.5) to [out = 150, in = 60] (-4, 8) node[left] {$m = \dfrac{\Delta x}{\Delta y}$};
+    \draw[->] (10.5, 1.8) to [out = -30, in = -170] (14, 1) node[right] {$m' = \dfrac{\Delta x}{\Delta y} = \dfrac{1}{m}$};
+
+    \coordinate (A) at (2.5, {t(2.5)});
+    \coordinate (B) at (2.5, {t(6)});
+    \coordinate (C) at (6, {t(6)});
+
+    \coordinate (D) at ({t(2.5)}, {t2(t(2.5))});
+    \coordinate (E) at ({t(6)}, {t2(t(2.5))});
+    \coordinate (F) at ({t(6)}, {t2(t(6))});
+
+    \draw (A) node[circle, fill = black, scale = 0.3]{};
+    \draw (D) node[circle, fill = black, scale = 0.3]{};
+
+    \draw (A) -- (B) -- (C);
+    \draw[decorate, decoration = {brace, amplitude = 10pt, raise = 2pt}] (A) -- (B) node[midway, left, xshift = -10pt] {$\Delta y$};
+    \draw[decorate, decoration = {brace, amplitude = 10pt, raise = 2pt}] (B) -- (C) node[midway, above, yshift = 10pt] {$\Delta x$};
+
+    \draw (D) -- (E) -- (F);
+    \draw[decorate, decoration = {brace, amplitude = 10pt, raise = 2pt}] (F) -- (E) node[midway, right, xshift = 10pt] {$\Delta x$};
+    \draw[decorate, decoration = {brace, amplitude = 10pt, raise = 2pt}] (E) -- (D) node[midway, below, yshift = -10pt] {$\Delta y$};
+
+
+    \end{axis}
+
+    % Second axis so that we can mirror without running into problems
+    \begin{axis}[
+        hide axis,
+        width = \textwidth,
+        height = \textwidth,
+        ymin = -12, ymax = 12,
+        xmin = -12, xmax = 12,
+        domain = -12:12,
+    ]
+    \addplot[color = black, domain = -12:6] {f(x)};
+    \addplot[rotate = -90, xscale = -1, color = black, domain = -12:6] {f(x)};
+    \end{axis}
+
+\end{tikzpicture}
+
+\[\begin{aligned}
+    &m = f'(x_0) \neq 0 \imp (f^{-1}(y_0))' = m' = \frac{1}{m} \\
+    &= \frac{1}{f'(x_0)} = \frac{1}{f'(f^{-1} (y_0))}
+\end{aligned}\]
+
+\subsection{Satz: Ableitung der Umkehrfunktion}
+$I, J$ offene Intervalle, $f: I \to J$ differenzierbar in $x_0 \in I$ mit
+$f'(x_0) \neq 0$. Dann:
+
+$f^{-1}: y \to I$ differenzierbar in $y_0 = f(x_0)$ mit $(f^{-1}(y_0))' = \dfrac{1}{f'(x_0)} = \dfrac{1}{f'(f^{-1}(x_0))}$
+
+\textbf{Beweis: } Sei $t = f(x_0 + h) - f(x_0) \quad (*)$
+
+Es gilt: $h \to 0 \eqv t \to 0$
+\[\begin{aligned}
+    &\frac{1}{\dfrac{f(x_0 + h) - f(x_0)}{h}} \overset{(*)}{=} \frac{x_0 + h - x_0}{t} \\
+    & = \frac{f^{-1}(f(x_0 + h)) - f^{-1}(f(x_0))}{t} \overset{(*)}{=} \frac{f^{-1}(f(x) + t) - f^{-1}(f(x))}{t} \\
+    &\xrightarrow[h \to 0]{} \frac{1}{f'(x_0)} = \frac{1}{f'(f^{-1}(y_0))} \qed
+\end{aligned}\]
+
+\ifdefined\MAINDOC\else
+\end{document}
+\fi
