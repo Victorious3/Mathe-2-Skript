@@ -1,0 +1,299 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{25. Juni 2018}
+    \maketitle
+\fi
+
+\begin{enumerate}
+    \item[]
+    \begin{enumerate}
+        \addtolength{\itemindent}{12pt}
+        \item[\underline{1. Fall}:] Beide Extrema werden auf dem Rand angenommen: \\
+        $f(a) = f(b) \imp m = M$ \\
+        $\imp f$ konstant $\imp f'(\xi) = 0 \quad \forall \xi \in (a, b)$
+        \item[\underline{2. Fall:}] Ein Extremum wird auf dem Rand angenommen: \\
+        $\imp \exists \xi \in (a, b): f(\xi)$ Extremum $\underset{6.18}{\imp}
+        f'(\xi) = 0$.
+    \end{enumerate}
+    \item[3.]
+    Es ist $g(b) \neq g(a)$, denn sonst gäbe es ein $x \in (a, b)$ mit $g'(x) = 0$ (Rolle)
+
+    Hilfsfunktion: $h(x) = f(x) = \dfrac{f(b) - f(a)}{g(b) - g(a)} \cdot g(x)$
+
+    Es ist $h(b) - h(a) = 0$. $h$ stetig auf $[a, b]$ und differenzierbar in $(a, b)$.
+    \[\begin{aligned}
+        &\underset{\text{Rolle}}{\imp} \exists \xi \in (a, b): h'(\xi) = 0 \\
+        &\imp \frac{f'(\xi)}{g'(\xi)} = \frac{f(b) - f(a)}{g(b) - g(a)}
+    \end{aligned}\]
+    \item[1.] Folgt aus 3. für $g(x) = x$.
+\end{enumerate}
+\subsection{Monotoniekriterium}
+Sei $f: [a, b]$ stetig und auf $(a, b)$ differenzierbar.
+\begin{enumerate}[1.]
+    \item $f'(x) \underset{\hbox{$(\leq)$}}{\geq} 0 \quad \forall x \in (a, b)
+    \eqv f$ monoton $\underset{\hbox{(fallend)}}{\text{wachsend}}$ auf $[a, b]$
+    \item $f'(x) \underset{\hbox{$(<)$}}{>} 0 \quad \forall x \in (a, b)
+    \underset{\hbox{$\cancel{\Leftarrow}$}}{\imp} f$ streng monoton $\underset{\hbox{(fallend)}}{\text{wachsend}}$ auf $[a, b]$
+    \item $f'(x) = 0 \quad \forall x \in (a, b) \eqv f$ konstant auf $[a, b]$
+\end{enumerate}
+\textbf{Beweis: }
+\begin{enumerate}[1.]
+    \item $(\Rightarrow):$ Sei $a \leq x_1 < x_2 \leq b$
+
+    $\underset{6.20.1}{\imp} \exists \xi \in (x_1, x_2): f(x_2) - f(x_1) =
+    \underbrace{f'(\xi)}_{\geq 0} \cdot \underbrace{(x_2 - x_1)}_{> 0} \geq 0$
+
+    $\imp f(x_1) \leq f(x_2)$
+
+    $(\Leftarrow):$ Sei $f$ monoton wachsend auf $[a, b]$ und differenzierbar in
+    $(a, b)$
+    \[
+        \imp f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}    
+    \]\[\begin{aligned}
+        &\text{Da} \ \frac{(f(x + h) - f(x)) \geq 0}{h > 0} \geq 0 \text{ für } h < 0 \text{ und } \\
+        &\frac{(f(x + h) - f(x)) \leq 0}{h < 0} \leq 0 \text{ ist }
+        f'(x) \geq 0 \quad \forall x \in (a, b)
+    \end{aligned}\]
+
+    \item[2. + 3.] analog $\qed$
+\end{enumerate}
+Bemerkung zu 2.: $f(x) = x^3$ ist streng monoton wachsend aber $f'(0) = 0$
+
+\subsection{Satz: Hinreichende Bedingung für lokale Exterma I}
+
+Sei $f: I \to \IR$ differenzierbar und $x_0 \in I, f'(x_0) = 0$
+\bigskip
+\begin{enumerate}[1.]
+    \begin{minipage}{0.5\textwidth}
+        \item \raisebox{-\height + \ht\strutbox}{
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width = 1.1\textwidth,
+                    unit vector ratio* = 1 1 1, 
+                    axis lines = left,
+                    ymin = -4, ymax = 1,
+                    xmin = -3, xmax = 3,
+                    xtick = {-2, 0, 2},
+                    ytick = \empty,
+                    xticklabels = {$x_0 - \delta$, $x_0$, $x_0 + \delta$},
+                    domain = -3:3
+                ]
+                \addplot[color = black, samples = 50] {-x^2};
+                \draw[dashed] (0, -4) -- (0, 0);
+                \draw [decorate, decoration = {brace, amplitude = 10pt, raise = 2pt}, yshift = 0pt]
+                    (-1.9, -4) -- (-0.1, -4) node [midway, yshift = 20pt] {$f' \geq 0$};
+                \draw [decorate, decoration = {brace, amplitude = 10pt, raise = 2pt}, yshift = 0pt]
+                    (0.1, -4) -- (1.9, -4) node [midway, yshift = 20pt] {$f' \leq 0$};
+                \end{axis}
+            \end{tikzpicture}
+        }
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+        \item \raisebox{-\height + \ht\strutbox}{
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width = 1.1\textwidth,
+                    axis lines = left,
+                    ymin = -2, ymax = 2,
+                    xmin = -2, xmax = 2,
+                    xtick = {-1.25992, 0, 1.25992},
+                    ytick = \empty,
+                    xticklabels = {$x_0 - \delta$, $x_0$, $x_0 + \delta$},
+                    domain = -2:2
+                ]
+                \addplot[color = black, samples = 50] {x^3};
+                \draw[dashed] (0, -4) -- (0, 0);
+                \draw [decorate, decoration = {brace, amplitude = 10pt, raise = 2pt}, yshift = 0pt]
+                    ({-2^(1/3) + 0.1}, -2) -- (-0.1, -2) node [midway, yshift = 20pt] {$f' > 0$};
+                \draw [decorate, decoration = {brace, amplitude = 10pt, raise = 2pt}, yshift = 0pt]
+                    (0.1, -2) -- ({2^(1/3) - 0.1}, -2) node [midway, yshift = 20pt] {$f' > 0$};
+                \end{axis}
+            \end{tikzpicture}
+        }
+    \end{minipage}
+\end{enumerate}
+\bigskip
+
+\begin{enumerate}[1.]
+    \item
+    $f'(y) \underset{\hbox{$(\leq)$}}{\geq} 0 \quad \forall (x_0 - \delta, x_0)$ und \\
+    $f'(y) \underset{\hbox{$(\leq)$}}{\geq} 0 \quad \forall (x_0, x_0 + \delta)$ für ein $\delta < 0$
+
+    $\imp f$ hat ein lokales Minimum (Maximum) in $x_0$.
+
+    \item
+    $f'(x) < 0 \quad \forall x \in (x_0 - \delta, x_0) \cup (x_0, x_0 + \delta)$
+
+    [1. hat einen Vorzeichenwechsel, 2. nicht]
+\end{enumerate}
+
+\textbf{Beweis: } Für lokales Minimum in $x_0$:
+
+Z.z: $f(x) \geq f(x_0) \quad \forall x \in U := (x_0 - \delta , x_0 + \delta)$
+
+Da $x \in U \setminus {x_0} \underset{6.20.1}{\imp} \exists \xi$ zwischen $x$ und $x_0$; \\
+$\xi \neq x_0$, so dass $f(x) - f(x_0) = f'(\xi) \cdot (x - x_0)$ (*)
+
+\begin{enumerate}
+    \addtolength{\itemindent}{12pt}
+    \item[\underline{1. Fall}: ] $x \in (x_0 - \delta, x_0)$
+    \[\begin{aligned}
+        &\imp x - x_0 < 0, f'(\xi) \leq 0 \\
+        &\underset{\text{(*)}}{\imp} f(x) - f(x_0) \geq 0
+        \imp f(x) \geq f(x_0)    
+    \end{aligned}\]
+    \item[\underline{2. Fall}: ] $x \in (x_0, x_0 + \delta)$
+    \[\begin{aligned}
+        &\imp x - x_0 > 0, f'(\xi) \geq 0 \\
+        &\underset{\text{(*)}}{\imp} f(x) - f(x_0) \geq 0
+        \imp f(x) \geq f(x_0)    
+    \end{aligned}\]
+\end{enumerate}
+Insgesamt: $f(x) \geq f(x_0) \quad \forall x \in U$
+
+(Rest analog) $\quad \qed$
+
+\subsection{Bemerkung}
+\hfill
+\begin{minipage}{0.4\textwidth}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width = 1.2\textwidth,
+            axis y line = left,
+            axis x line = center,
+            ymin = -1.5, ymax = 1.5,
+            xmin = -1, xmax = 1,
+            xtick = {0},
+            xticklabels = {$x_0$},
+            ytick = \empty
+        ]
+        \addplot[color = black, samples = 2] {1.7*x};
+        \draw[color = black] plot [smooth, tension = 1.2] coordinates {
+            (-2, 0) (-1, -1) (1, 1) (2, 0)
+        };
+        \end{axis}
+        \draw (4.5, 2.9) node {$f'$};
+    \end{tikzpicture}    
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+    Vorzeichenwechsel von - nach + \\
+    $\imp f$ hat Minimum in $x_0$
+\end{minipage}
+\bigskip
+
+$f'$ weist in $x_0$ einen Vorzeichenwechsel auf, wenn die Steigung von $f'$ in $x_0$
+positiv (negativ) ist, d.h. wenn $f''(x_0) > 0 \ (f''(x_0) < 0)$.
+
+Wenn $f''(x) = 0$, ist über einen Vorzeichenwechsel keine Aussage möglich.
+\bigskip
+
+\hfill
+\begin{minipage}{0.4\textwidth}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width = 1.2\textwidth,
+            axis y line = left,
+            axis x line = center,
+            xtick = {0},
+            xticklabels = {$x_0$},
+            ytick = \empty
+        ]
+        \addplot[color = black] {4 * x^3};
+        \addplot[dashed] {x^4};
+        \end{axis}
+        \draw (1, 1) node {$f'$};
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+    $f''(x_0) = 0$ und VZW
+    \[\begin{aligned}
+        f(x) &= x^4 \\
+        f'(0) &= 0 \\
+        f''(0) &= 0
+    \end{aligned}\]
+\end{minipage}
+\bigskip
+
+\hfill
+\begin{minipage}{0.4\textwidth}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width = 1.2\textwidth,
+            axis y line = left,
+            axis x line = center,
+            xtick = {0},
+            xticklabels = {$x_0$},
+            ytick = \empty
+        ]
+        \addplot[color = black] {3 * x^2};
+        \addplot[dashed] {x^3};
+        \end{axis}
+        \draw (1, 2.4) node {$g'$};
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+    $g''(x_0) = 0$ und kein VZW
+    \[\begin{aligned}
+        g(x) &= x^3 \\
+        g'(0) &= 0 \\
+        g''(0) &= 0
+    \end{aligned}\]
+\end{minipage}
+
+\subsection{Satz: Hinreichende Bedingung für Extrema II}
+Sei $f: I \to \IR$ differenzierbar und $x_0 \in I$ 2-mal differenzierbar.
+
+$(f'(x_0) = 0, f''(x_0) \underset{\hbox{$(<)$}}{>} 0) \imp 
+f $ hat in $x_0$ ein lokales Minimum (Maximum)
+
+\textbf{Beweis: } Für Minimum:
+
+Es ist $\lim\limits_{h \to 0} \dfrac{f'(x_0 + h) - f(x_0)}{h} =
+\lim\limits_{h \to 0} \dfrac{f(x_0 + h)}{h} = f''(x_0) > 0$
+
+$\imp \exists \delta < 0: \dfrac{f'(x_0 + h)}{h} > 0 \quad \forall \ |h| < \delta, h \neq 0 \quad$ (*)
+\[\begin{rcases}
+    \text{1. Fall}: & -\delta < h < 0 \underset{\text{(*)}}{\imp} f'(x_0 + h) < 0 \\
+    \text{2. Fall}: & 0 < h < \delta \underset{\text{(*)}}{\imp} f'(x_0 + h) > 0
+\end{rcases} \text{Vorzeichenwechsel}\]
+$f'(x_0) = 0$ und Vorzeichenwechsel $\underset{6.22}{\imp} f$ hat ein lokales Minimum in $x_0$.
+
+Rest analog $\qed$
+
+\subsection*{Die Regeln von L'Hospital (1661--1704)}
+Problem: Grenzwerte vom Typ $\frac{0}{0}, \ \frac{\infty}{\infty}, \ 0 \cdot \infty, \ 0^0$ usw...
+
+Beispiel: $\dfrac{\sin(x)}{x} \xrightarrow[x \to 0]{}$ ?
+
+\begin{tikzpicture}
+    \begin{axis}[
+        unit vector ratio* = 1 1 1, 
+        axis lines = center,
+        ymin = -1, ymax = 3,
+        xtick = \empty,
+        ytick = \empty,
+        domain = -3:7
+    ]
+    \addplot[color = black, samples = 50] {sin(deg(x))};
+    \addplot[color = black] {x};
+    \end{axis}
+    \draw (7.4, 1.2) node {$\sin(x)$};
+    \draw (4.3, 2.9) node {$x$};
+\end{tikzpicture}
+
+$f(x) = \sin(x)$ und $g(x) = x$ haben in $x = 0$ \\
+die selbe Tangente $(t(x) = x) \imp f, g$ konvergieren \\
+mit der gleichen Geschwindigkeit gegen 0, wenn $x \to 0$.
+
+$\imp \dfrac{\sin(x)}{x} \to 1$ für $x \to 0$.
+
+\ifdefined\MAINDOC\else
+\end{document}
+\fi
