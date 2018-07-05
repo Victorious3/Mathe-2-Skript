@@ -1,0 +1,206 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{27. Juni 2018}
+    \maketitle
+\fi
+\[
+    \frac{\sin x}{x} \xrightarrow[x \to 0]{1} 1
+\]
+Grundidee: $f(a) = g(a) = 0; f,g$ differenzierbar, $g'(x) \neq 0$
+\[
+    \frac{f(a + h)}{g(a + h)} = \frac{f(a + h) - f(a)}{g(a + h) - g(a)} = 
+    \frac{\frac{f(a + h) - f(a)}{h}}{\frac{g(a + h) - g(a)}{h}} \xrightarrow[h \to 0]{} \frac{f'(a)}{g'(a)}
+\]
+\subsection{Satz: Regeln von l'Hospital}
+$f, g: (a, b) \to \IR$ seien differenzierbar mit $a, b \in \IR \cup \{+\infty, -\infty\}$
+und es sei $g'(x) \neq 0 \quad \forall x \in (a, b)$.
+
+Gilt $\lim\limits_{x \to a^+} \dfrac{f'(x)}{g'(x)} = \lim\limits_{x \to a^+} g(x) = \begin{cases}
+    0 \text{ oder } \\ \infty
+\end{cases}$ und existert $\lim\limits_{x \to a^+} \dfrac{f'(x)}{g'(x)}$, \\
+so existiert auch $\lim\limits_{x \to a^+} \dfrac{f(x)}{g(x)}$ und es ist 
+$\lim\limits_{x \to a^+} \dfrac{f(x)}{g(x)} = \lim\limits_{x \to a^+} \dfrac{f'(x)}{g'(x)}$
+
+Entsprechendes gilt auch für $x \to b$.
+\bigskip
+
+\textbf{Beweis: } \underline{Fall 1:} $a \in \IR, \lim\limits_{x \to a^+} f(x) = \lim\limits_{x \to a^+} g(x) = 0$
+
+$f, g$ differenzierbar auf $(a, b) \imp f, g$ stetig auf $(a, b)$.
+
+Setze $f, g$ zu stetiger Funktion auf $[a, b)$ fort, d.h. $f(a) = g(a) = 0$.
+
+$\underset{6.20.3}{\imp}$ Für $x \in (a, b)$ gibt es $\xi_x \in (a, x)$ mit \\
+\begin{minipage}{0.5\textwidth}
+    \[
+        \frac{f(x)}{g(x)} = \frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f'(\xi_x)}{g'(\xi_x)}
+    \]
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    \vspace{25pt}
+    \begin{tikzpicture}
+        \draw (-0.1, 0) -- (4.1, 0);
+        \foreach \x/\l in {0/$a$, 2/$\xi_x$, 3/$x$, 4/$b$} {
+            \draw (\x, 0.1) -- (\x, -0.1) node[below] {\l};
+        }
+    \end{tikzpicture}
+\end{minipage}
+
+Es gilt: $x \to a^+ \imp \xi_x \to a^+$. Daraus folgt die Behauptung.
+\bigskip
+
+\underline{Fall 2:} $a \in \IR, \lim\limits_{x \to a^+} f(x) = \lim\limits_{x \to a^+} g(x) = \infty$.
+
+Sei $\beta = \lim\limits_{x \to a^+} \dfrac{f'(x)}{g'(x)}$ und sei $\epsilon > 0$.
+\begin{enumerate}[a)]
+    \item 
+    {\abovedisplayskip = -\baselineskip
+    \[\begin{aligned}
+        &\imp \exists c  \in (a, b): \abs{\frac{f'(x)}{g(x)} - \beta} < \epsilon \quad \forall x \in (a, c) \\
+        &\underset{6.20.3}{\imp} \abs{\frac{f(x) - f(c)}{g(x) - g(c)} - \beta} < \epsilon \quad \forall x \in (a, c)
+    \end{aligned}\]}
+
+    \item Ohne Beschränkung der Allgemeinheit gilt: 
+    
+    $f(x) \neq 0$, $g(x) \neq 0$ für $x \in (a, ]$
+
+    da $f(x)$, $g(x) \xrightarrow[x \to a^+]{} \infty$.
+    \[\begin{aligned}
+        &\imp \frac{f(x)}{g(x)} - \frac{f(x) - f(c)}{g(x) - g(c)} \\
+        &= \underbrace{\frac{f(x) - f(c)}{g(x) - g(c)}}_{\text{beschränkt für $x \in (a, c)$}} -
+        \qt{\frac{1 - \dfrac{g(c)}{g(x)}}{\underbrace{1 - \dfrac{f(x)}{g(x)}}_{\to 1 \text{ für } x \to a^+}} - 1} \xrightarrow[x \to a^+]{} 0 \\
+        &\imp \ \exists d \in (a, c): \bigg|\frac{f(x)}{g(x)} - \underbrace{\frac{f(x) - c(x)}{g(x) - g(c)}}_{\text{(*)}}\bigg| < \epsilon \quad \forall x \in (a, d) \\
+        &\imp \abs{\frac{f(x)}{g(x)} - \beta} = \abs{\frac{f(x)}{g(x)} - \text{(*)} + \text{(*)} - \beta} \\
+        &\leq \abs{\frac{f(x)}{g(x)} - \text{(*)}} + \bigg|\text{(*)} - \beta\bigg| \underset{\text{a), b)}}{<} 2 \epsilon
+    \end{aligned}\]
+\end{enumerate}
+\underline{Fall 3:} $b = \infty$, $\lim\limits_{x \to \infty} f(x) = \lim\limits_{x \to \infty} g(x) = \begin{cases}
+    0 \\ \infty
+\end{cases}$ \\
+Substituiere: $x = \dfrac{1}{t} \quad x \to \infty \eqv t \to 0^+$
+
+D.h.: $\lim\limits_{x \to \infty} f(x) = \lim\limits_{t \to 0^+} f\qt{\dfrac{1}{t}}$. Analog für
+$g\qt{\dfrac{1}{t}}$ und $\dfrac{f'(\frac{1}{t})}{g'(\frac{1}{t})}$.
+\[
+    \underset{\text{Fall 1/2}}{\imp} \lim_{t \to 0^+} \frac{f(\frac{1}{t})}{g(\frac{1}{t})} = 
+    \lim_{t \to 0^+} \frac{(f'(\frac{1}{t}))'}{(g(\frac{1}{t}))'} =
+    \lim_{t \to 0^+} \frac{- \frac{1}{t^2} f'(\frac{1}{t})}{- \frac{1}{t^2} g'(\frac{1}{t})}    
+\]
+Durch Resubstitution folgt die Behauptung $\qed$
+
+\subsection{Beispiele}
+\begin{enumerate}[a)]
+    \item 
+    {\abovedisplayskip = -\baselineskip
+    \[
+        \lim_{x \to 0} \frac{\sin x}{x} = \lim_{x \to 0} \frac{\cos x}{1} = 1
+    \]}
+    \item Sei $\alpha > 0$.
+
+    \[
+        \lim_{x \to \infty} \frac{\ln x}{x^\alpha} = 
+        \lim_{x \to \infty} \frac{1}{x^\alpha x^{\alpha - 1}} =
+        \lim_{x \to \infty} \frac{1}{\alpha x^\alpha} = 0    
+    \]
+    D.h.: $\ln(x)$ wächst langsamer als jede Potenz von $x$.
+    \item
+    {\abovedisplayskip = -\baselineskip
+    \[
+        \lim_{x \to \infty} \frac{x^n}{e^x} = \lim_{x \to \infty } \frac{nx^{n - 1}}{e^x} = ... = \lim_{x \to \infty} \frac{n!}{e^x} = 0
+    \]} 
+    D.h.: $e^x$ wächst schneller als jede Potenz von $x$.
+
+    \item
+    {\abovedisplayskip = -\baselineskip
+    \[\begin{aligned}
+        &\lim_{x \to 0^+} x \cdot \ln x = \lim_{x \to 0^+} \frac{\ln x \to \infty}{\frac{1}{x} \to \infty} \\
+        &= \lim_{x \to 0^+} \frac{1}{\bcancel{x}} \cdot \frac{-x^{\cancel{2}}}{1} = 0
+    \end{aligned}\]}
+\end{enumerate}
+\section{Integralrechnung}
+Im Folgenden sei $D \subseteq \IR$ ein Intervall.
+
+\subsection{Bemerkung: links--/rechtsseitige Ableitung}
+Sei $f: [a, b] \to \IR$. Der Grenzwert
+\[
+    f'(a) := \lim_{h \to 0^+} \frac{f(a + h) - f(a)}{h} \text{ (falls existent)} 
+\]
+heißt rechtsseitige Ableitung von $f$ in $a$ und
+\[
+    f'(b) := \lim_{h \to 0^-} \frac{f(b + h) - f(b)}{h} \text{ (falls existent)} 
+\]
+heißt linksseitige Ableitung von $f$ in $b$.
+
+\subsection{Definition: Stammfunktion}
+Sei $f: D \to \IR$. Dan heißt $F: D \to \IR$ Stammfunktion von $f$
+$\eqv$
+\begin{enumerate}[1.]
+    \item $F$ ist differenzierbar
+    \item $F'(x) = f(x) \quad \forall x \in D$
+\end{enumerate}
+
+\subsection{Beispiel}
+Stammfunktionen von $f(x) = x$, $x \in \IR$:
+\begin{itemize}
+    \item $F(x) = \dfrac{1}{2}x^2$
+    \item $G(x) = \dfrac{1}{2}x^2 + 5$
+\end{itemize}
+
+\subsection{Satz}
+\begin{enumerate}[a)]
+    \item Ist $F$ Stammfunktion von $f$, so auch $F + c \quad \forall c \in \IR$
+    \item Sind $F, G$ Stammfunktionen von $f$, so existert $c \in \IR$ mit $G = F + c$.
+\end{enumerate}
+\textbf{Beweis: }
+
+\begin{enumerate}[a)]
+    \item $(F + c)'(x) = F'(x) = f(x)$
+    \item $G'(x) - F'(x) = f(x) - f(x) = 0$
+
+    $\imp \ \exists c \in \IR: G(x) - F(x) = c \qed$
+\end{enumerate}
+
+\subsection{Bemerkung: Unbestimmtes Integral}
+$\int f(x) \:dx$ Sei Bezeichnung für eine beliebige Stammfunktion von $f$,
+falls eine solche existiert. Ist $F$ Stammfunktion, so gilt
+$\int f(x) \:dx = F(x) + c$.
+
+$\int f(x) \:dx$ heißt unbestimmtes Integral.
+
+\subsection{Beispiele}
+\begin{enumerate}[a)]
+    \item Für $\displaystyle \alpha \neq -1: \int x^\alpha \:dx = \frac{x^{\alpha + 1}}{\alpha + 1} + c$
+   
+    Einschränkungen: \begin{itemize}
+        \item $\alpha \in \IZ, \ \alpha \leq -2 \imp x \neq 0$
+        \item $\alpha \notin \IZ \imp D \subseteq \IR_{> 0}$
+    \end{itemize}
+
+    \item $\displaystyle \int \frac{1}{x} \:dx = \ln |x| + c \quad x \neq 0$
+    \item $\displaystyle \int \frac{1}{x^2 + 1} \:dx = \arctan x + c \quad x \in \IR$
+    \item $\displaystyle \int \frac{1}{\sqrt{1 - x^2}} \:dx = \arcsin x + c \quad x \in (-1, 1)$
+\end{enumerate}
+
+\subsection{Satz}
+Seien $f_1, f_2: D \to \IR$ und $\lambda_1, \lambda_2 \in \IR$.
+Dann:
+\[
+    \int \lambda_1 f_1(x) + \lambda_2 f_2(x) \:dx = \lambda_1 \int f_1(dx) + \lambda_2 \int f_2(x) \:dx   
+\]
+sofern $f_1, f_2$ Stammfunktionen haben.
+
+\textbf{Beweis: } Folgt aus 6.8a+b, 7.1 $\qed$
+
+\subsection{Beispiel}
+\[
+    \int 4x^2 + 3 - \frac{2}{x} \:dx \underset{\substack{
+        \text{7.6} \\ \text{7.7}}}{=}
+    \frac{4}{3}x^3 + 3x - \ln |x| + c \quad (x \neq 0)  
+\]
+\ifdefined\MAINDOC\else
+\end{document}
+\fi
