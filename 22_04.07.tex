@@ -1,0 +1,168 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{07. Juli 2018}
+    \maketitle
+\fi
+\subsection{Definition: Ober--/Untersumme}
+Sei $f: [a, b] \to \IR$ beschränkt (d.h. $\exists K > 0: |f(x)| \leq K \quad \forall x \in [a, b]$) \\
+und sei $Z = \{x_0, x_1, ..., x_n\} \in \mathfrak{Z}[a, b]$. 
+
+Setze $m_i := \inf_{x_{i-1} \leq x \leq x_i} f(x)$ und
+$M_i := \sup_{x_{i-1} \leq x \leq x_i} f(x)$. 
+
+Dann heißt 
+$U(Z, f) = \sum\limits_{i = 1}^n m_i (x_i - x_{i - 1})$ Untersumme von $f$ zur Zerlengung $Z$
+und $U(Z, f) = \sum\limits_{i = 1}^n M_i (x_i - x_{i - 1})$ Obersumme.
+
+\subsection{Definition: Bestimmtes Riemann-Integral}
+Sei $f: [a, b] \to \IR$.
+\begin{enumerate}[a)]
+    \item $f$ heißt (Riemann--) integrierbar $:\eqv$
+    \begin{enumerate}[1.]
+        \item $f$ ist beschränkt
+        \item Für jede beliebige Folge $(Zn) \in \mathfrak{Z}[a, b]$ mit $\mu(Z_n) \to 0$
+        konvergieren $U(Z_n, f)$ und $O(Z_n, f)$ gegen den selben Wert $A \in \IR$.
+    \end{enumerate}
+    \item Der Grenzwert $A$ heißt bestimmtes Integral oder (Riemann--) Integral von
+    $f$ über $[a, b]$. Man schreibt:
+    \[
+        \int_a^b f(x) \:dx = A
+    \]
+    \item Festlegungen:
+    \begin{itemize}
+        \abovedisplayskip = -\baselineskip
+        \item \[
+            \int_a^a f(x) \:dx = 0    
+        \]
+        \item \[
+            \int_b^a f(x) \:dx = -\int_a^b f(x) % TODO Unreadable in source
+        \]
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Beispiele}
+\begin{enumerate}[a)]
+    {\abovedisplayskip = -\baselineskip
+    \item \[\begin{aligned}
+        &f(x) = c \quad \forall x \in \IR \\
+        &\imp m_i = M_i = c \\
+        &\imp U(Z,f) = O(Z, f) = \sum_{i=1}^n c \cdot (x_i - x_{i-1}) \\
+        &= c \cdot \sum_{i=1}^n (x_i - x_{i - 1}) = c \cdot (\underbrace{x_n - x_0}_{b - a})
+    \end{aligned}\]}
+    \item $f: [0, 1] \to \IR$, $f(x) = \begin{cases}
+        1 & x \in \IQ \\
+        0 & x \in \IR \setminus \IQ
+    \end{cases}$
+
+    Sei $Z = \{x_0, ..., x_n\} \in \mathfrak{Z}[a, b].$ \\
+    In $[X_{i-1}, x_i]$ gibt es sowohl irrationale als auch rationale Zahlen.
+    \[\begin{aligned}
+        &\imp m_i = 0, M_i = 1 \\
+        &\imp U(Z, f) = \sum_{i = 1}^n 0 \cdot (x_i - x_{i - 1}) = 0 \\
+        &O(Z,f) = \sum_{i = 1}^n 1 \cdot (x_i - x_{i - 1}) = 1
+    \end{aligned}\]
+    $\imp$ Für eine Folge $(Z_n)$ in $\mathfrak{Z}[0, 1]$ mit $\mu(Z_n) \to 0$ ist
+    \[
+        \lim_{n \to \infty} U(Z_n, f) = 0 \neq \lim_{n \to \infty} 0(Z_n, f) = 1
+    \]
+    \item $f:[0, 1] \to \IR$, $f(x) = x$ % TODO: Graph ?
+
+    Sei $Z_n = \{\underset{x_0}{\frac{0}{n}}, \underset{x_1}{\frac{1}{n}}, \underset{x_1}{\frac{2}{n}}, ..., \underset{x_n}{\frac{n}{n}}\}$
+    \[\begin{aligned}
+        &=(Z_n, f) = \sum_{i=1}^n \frac{i}{n} (\frac{i}{n} - \frac{i-1}{n}) \\
+        &= \sum_{i=1}^n \frac{i}{n} \cdot \frac{1}{n} = \frac{1}{n^2} \sum_{i=1}^n i = \frac{1}{n^2} \cdot \frac{n(n-1)}{2} \\
+        &= \frac{n^2 (1 - \frac{1}{n})}{n^2 \cdot 2} \xrightarrow[n \to \infty]{} \frac{1}{2}
+    \end{aligned}\]
+    Analog: $U(Z_n, f) \to \frac{1}{2}$
+
+    Problem: Gilt $\displaystyle \lim_{n \to \infty} O(Z_n, f) = \lim_{n \to \infty} U(Z_n, f) = \frac{1}{2}$
+
+    auch für jede andere Folge $(Z_n)$ mit $\mu(Z_n) \to 0$ ?
+
+    $\rightarrow$ Ja, wegen
+\end{enumerate}
+
+\subsection{Satz}
+Sei $f: [a, b] \to \IR$ beschränkt und monoton. Dann ist $f$ integrierbar.
+\bigskip
+
+\textbf{Beweis: } Sei $f$ monoton wachsend und $Z = \{x_0, x_1, ..., x_n\} \in \mathfrak{Z}[a, b]$
+
+$\imp m_i = f(x_i - 1)\quad M_i = f(x_i)$
+\[\begin{aligned}
+    \imp O(Z, f) - U(Z, f) &=
+    \sum_{i = 1}^n (f(x_i) - f(x_{i - 1}))(\underbrace{x_i - X_{i - 1}}_{\leq \mu(Z)}) \\
+        &\leq \mu(Z) \sum_{i=1}^n (f(x_i) - f(x_{i - 1})) \quad \text{(Teleskopsumme)} \\
+        &= \mu(Z)(f(b) - f(a))
+\end{aligned}\]
+Für jede Folge $(Z_n)$ in $\mathfrak{Z}[a, b]$ mit $\mu(Z_n) \to 0$ gilt daher
+
+$O(Z_n, f) - U(Z_n, f) \to 0$, d.h. $\lim\limits_{n \to \infty} O(Z_n, f) = \lim\limits_{n \to \infty} U(Z_n, f \qed$
+
+\subsection{Satz}
+Sei $f: [a, b] \to \IR$ stetig. Dann ist $f$ integrierbar. (Ohne Beweis)
+
+\subsection{Bemerkung}
+\begin{enumerate}[a)] %TODO Graph
+    \item Eine beschränkte Funktion $f$ ist Riemann-integrierbar, wenn $f$ endlich viele Sprungstellen besitzt
+    (wegen 7.22b). Vgl auch Bsp 7.18b, wo jedes $x \in [0, 1]$ eine Sprungstelle ist.
+    \item Wenn $f$ negativ auf $[a, b]$ ist, so wird auch $\int_a^bf(x) \:dx$ negativ.
+\end{enumerate}
+
+\subsection{Satz: Rechenregeln}
+\begin{enumerate}[a)]
+    \abovedisplayskip = -\baselineskip
+    \item \[
+        \int_a^b \lambda f(x) + g(x) \:dx = \lambda \int_a^b f(x) \:dx + \int_a^b g(x) \:dx \quad \forall \lambda \in \IR
+    \]
+    \item \[
+        \int_a^b f(x) \:dx = \int_a^c f(x) \:dx + \int_c^b f(x) \:dx \quad \forall c \in [a, b]    
+    \]
+    \item \[\begin{aligned}
+        & f(x) \leq g(x) \ \forall x \in [a, b] \\
+        & \imp \int_a^b f(x) \:dx \leq \int_a^b g(x) \:dx    
+    \end{aligned}\]
+    \item \[\begin{aligned}
+        &m \leq f(x) \leq M \quad \forall x \in [a, b] \\
+        &\imp \int_a^b f(x) \:dx \leq M(b - a)
+    \end{aligned}\]
+\end{enumerate}
+Beweis anhand von 7.16 und 7.17 $\qed$
+
+\subsection{Mittelwertsatz der Integralrechnung}
+Sei $f: [a, b] \to \IR$ stetig. Dann existiert $\xi \in [a, b]$ mit
+\[
+    \int_a^b f(x) \:dx = \xi(b - a)    
+\]
+\begin{tikzpicture}
+    \begin{axis}[
+        width = 0.5\textwidth,
+        axis lines = left,
+        xtick = {0, 180, 360},
+        xticklabels = {$a$, $\xi$, $b$},
+        ytick = \empty,
+        ymin = -5, ymax = 2,
+        domain = -20:380
+    ]
+    \draw (0, -5) -- (0, 0);
+    \draw (180, -5) -- (180, 0) node[dot, scale = 0.7]{};
+    \draw (360, -5) -- (360, 0);
+    \addplot[color = black, samples = 50] {sin(x)};
+    \addplot[color = black, samples = 2]{0};
+    \end{axis}
+\end{tikzpicture}
+
+\textbf{Beweis: } $f$ stetig auf $[a, b]$
+\[\begin{aligned}
+    &\underset{5.30}{\imp} \exists m, M \in \IR: m \leq f(x) \leq M \quad \forall x \int [a, b] \\
+    &\underset{7.22d}{\imp} m(b - a) \leq \int_a^b f(x) \:dx \leq M(b - a) \quad \Big|:\underbrace{(b - a)}_{> 0} \\
+    &\imp m \leq \underbrace{\frac{1}{b - a} \int_a^b f(x) \:dx}_y \leq M \\
+    &\underset{5.24}{\imp} \exists \xi \in [a, b]: f(\xi)y = \frac{1}{b - a} \int_a^b f(x) \:dx \qed
+\end{aligned}\]
+\ifdefined\MAINDOC\else
+\end{document}
+\fi

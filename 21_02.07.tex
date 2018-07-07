@@ -1,0 +1,221 @@
+\ifdefined\MAINDOC\else
+\documentclass[10pt, a4paper, fleqn]{article}
+\usepackage{base}
+
+\begin{document}
+    \title{Skript Mathe 2}
+    \date{2. Juli 2018}
+    \maketitle
+\fi
+\subsection{Satz: Partielle Integration}
+Für $f_1, f_2: D \to \IR$ differenzierbar gilt:
+\[
+    \int f_1'(x) f_2(x) \:dx = f_1(x) f_2(x) - \int f_1(x) f_2'(x) \:dx    
+\]
+sofern $f_1 \cdot f_2'$ eine Stammfunktion besitzt.
+\bigskip
+
+\textbf{Beweis: }
+\vspace{-5pt}
+\[\begin{aligned}
+    &(f_1(x) \cdot f_2(x) - \int f_1(x) \cdot f_2'(x) \:dx)' \\
+    &\underset{6.8}{=} f_1'(x) f_2(x) + f_1(x) \cdot f_2'(x) - f_1(x) \cdot f_2'(x) \\ 
+    &= f_1'(x) \cdot f_2'(x) \qed
+\end{aligned}\]
+
+\subsection{Beispiele}
+\begin{enumerate}[a)]
+    \abovedisplayskip = -\baselineskip
+
+    \item \[\begin{aligned}
+        &\int \underbrace{\sin x}_{f'(x)} \cdot \underbrace{x}_{g(x)} \:dx \\
+        &= (-\cos x) \cdot x - \int (-\cos x) \:dx \\
+        &= (-\cos x) \cdot x + \sin x + c
+    \end{aligned}\]
+
+    \item \[\begin{aligned}
+        &\int \ln x \:dx = \int \underbrace{1}_{f'} \cdot \underbrace{\ln x}_{g(x)} \:dx 
+        = x \cdot \ln x - \int \underbrace{x \cdot \frac{1}{x}}_{=1} \:dx \\
+        &= x \cdot \ln x - x + c, \quad x > 0
+    \end{aligned}\]
+
+    \item \[\begin{aligned}
+        &\int \underbrace{e^x}_{f'} \cdot \underbrace{\cos x}_{g} \:dx = e^x \cos x + 
+            \int \underbrace{e^x}_{f'} \underbrace{\sin x}_{g} \:dx \\
+        &= e^x \cos x + e^x \sin x - \boxed{\int e^x \cos x \:dx} = I \\
+        &\eqv 2I = e^x (\cos x + \sin x) \\
+        &\eqv I = \frac{1}{2} e^x (\cos x + \sin x) + c
+    \end{aligned}\]
+\end{enumerate}
+
+\subsection{Satz: Substitutionsregel}
+Seien $D_1, D_2 \subseteq \IR$ Intervalle, $\varphi: D_1 \to D_2$ differenzierbar
+und $f: D_2 \to \IR$ mit Stammfunktion $F$.
+
+Dann:
+\[
+    \int f(\varphi(x)) \cdot \varphi'(x) \:dx = \int f(y) \:dy \qquad \Big| \ y = \varphi(x)     
+\]
+
+\textbf{Beweis: } Kettenregel
+\[
+    (F \circ \varphi)' = (F' \circ \varphi) \cdot \varphi' = (f \circ \varphi) \cdot \varphi' \qed  
+\]
+
+\subsection{Beispiele}
+\begin{enumerate}[a)]
+    \item $\varphi: D \to \IR$ differenzierbar, $\varphi(x) \neq 0$
+    \[\begin{aligned}
+        &\forall x \in D \underset{7.11}{\imp} \int \frac{\varphi'(x)}{\varphi(x)} \:dx = \int \frac{1}{y} \:dy \quad \Big| \ y = \varphi(x) \\
+        &= \ln |y| + c = \ln |\varphi(x)| + c \quad \text{(vgl. 6.15)}
+    \end{aligned}\]
+    z.B.:
+    \begin{itemize}
+        \abovedisplayskip = -\baselineskip
+        \item \[
+            \int \frac{x}{x^2 + 1} \:dx = \frac{1}{2} \int \frac{2x}{x^2 + 1} \:dx = \frac{1}{2} \ln(x^2 + 1) + c
+        \]
+        \item \[\begin{aligned}
+            &\int \tan x \:dx = \int \frac{\sin x}{\cos x} \:dx = - \int \frac{(\cos x)'}{\cos x} \:dx \\
+            &= -\ln |\cos x| + c, \quad x \in \qt{-\frac{\pi}{2}, \frac{\pi}{2}}
+        \end{aligned}\]
+    \end{itemize}
+    \item $f: D \to \IR$, $a,b \in \IR$ mit $a \neq 0$
+    \[\begin{aligned}
+        &\imp \int f(\underbrace{ax + b}_{\varphi(x)}) \:dx = \frac{1}{a} \int f(\underbrace{\varphi(x)}_{ax + b}) \cdot \underbrace{\varphi'(x)}_{a} \:dx \\
+        &\underset{7.11}{=} \frac{1}{a} \int f(y) \:dy \quad \Big| \ y = ax + b
+    \end{aligned}\]
+    z.B.:
+    \begin{itemize}
+        \abovedisplayskip = -\baselineskip
+        \item \[\begin{aligned}
+            &\int \frac{1}{(3x + 2)^5} \:dx = \frac{1}{3} \int \frac{1}{y^5} \:dy \quad \Big| \ y = 3x + 2 \\
+            &= \frac{1}{3}\qt{-\frac{1}{4}} \cdot \frac{1}{y^4} + c = \frac{1}{-12(3x + 2)^4} + c
+        \end{aligned}\]
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Bemerkung}
+\begin{enumerate}[a)]
+    \item $\displaystyle \int f(\varphi(x)) \varphi'(x) \:dx = \int f(y) \:dy$
+    \[\begin{aligned}
+        \text{d.h.: } y = \varphi(x), \:dy = \varphi'(x) \:dx \quad \Big| \ : \:dx \\
+        \frac{dx}{dy} = \varphi'(x) \quad \text{(vgl. 6.2.1)}
+    \end{aligned}\]
+    \[\begin{aligned}
+        &\text{z.B.: } \int \frac{x}{2x + 1} \:dyx \quad \Big| \ y = 2x + 1 \\
+        &dy = 2dx \\
+        &\imp \int \frac{x}{2x + 1} \:dx = \frac{1}{2} \cdot \frac{1}{2} \int \frac{2x + 1 - 1}{2x + 1} \cdot 2 \:dx
+    \end{aligned}\]
+    \[\begin{aligned}
+        = \frac{1}{4} \int \underbrace{\frac{y - 1}{y}}_{1 - \frac{1}{y}} \:dy &= \frac{1}{4}(y - \ln|y|) + c \\
+        &-\frac{1}{4}(2x + 1 - \ln (2x + 1)) + c
+    \end{aligned}\]
+
+    \item Falls $y = \varphi(x)$ bijektiv, so ist
+
+    $x = \varphi^{-1}(y)$ und $dx = (\varphi^{-1}(y))' \:dy$
+
+    Daraus ergibt sich ein alternativer Lösungsweg:
+    \[\begin{aligned}
+        &\int \frac{x}{2x + 1} \:dx \quad \Big| \ y = 2x + 1 \eqv x = \underbrace{\frac{1}{2}(y - 1)}_{\varphi^{-1}(y)} \\
+        &dx = \frac{1}{2} \:dy \\
+        &=\int \frac{\frac{1}{2}(y - 1)}{y} \cdot \frac{1}{2} \:dy \\
+        &=\frac{1}{4} \int \frac{y - 1}{y} \:dy = ... \quad \text{(a)}
+    \end{aligned}\]
+
+    \item Auf komplizierte Brüche wendet man \underline{Partialbruchzerlegung} an.
+
+    Hier nur ein Beispiel (muss man nicht wissen):
+    \[\begin{aligned}
+        &\frac{1}{x(x^2 + 1)} = \frac{A}{x} + \frac{Bx + c}{x^2 + 1} = \frac{A(x^2 + 1) + (Bx + c)x}{x(x^2 + 1)} \\
+        &\imp (A + B)x^2 + Cx + A = 1 \\
+        &\imp A + B = 0, \quad A = 1 \imp B = -1 \\
+        &\imp \int \frac{1}{x(x^2 + 1)} \:dx = \int \frac{1}{x} + \frac{-x}{x^2 + 1} \:dx \\
+        &\quad = \ln(x) - \frac{1}{2} \ln(x^2 + 1) + c
+    \end{aligned}\]
+\end{enumerate}
+
+\section*{Bestimmte Integrale}
+\subsection{Motivation: Flächenberechnung}
+\begin{minipage}{0.5\textwidth}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width = 1.1\textwidth,
+            unit vector ratio* = 1 1 1, 
+            axis lines = left,
+            xmin = 0, xmax = 10,
+            ymin = 0, ymax = 5,
+            xtick = {2, 7},
+            xticklabels = {$a$, $b$},
+            ytick = \empty,
+        ]
+        \draw (0, 4) -- (10, 4);
+        \draw[pattern = north east lines] (2, 4) rectangle (7, 0) node[midway, fill = white] {$A$};
+        \end{axis}
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    $f(x) = c$
+
+    $A = (b - a) \cdot c$
+\end{minipage}
+\bigskip
+
+\begin{minipage}{0.5\textwidth}
+    \begin{tikzpicture} [
+        declare function = {
+            f(\x) = sin(deg(\x + 0.3)) + 3;
+        }
+    ]
+        \begin{axis}[
+            width = 1.1\textwidth,
+            unit vector ratio* = 1 1 1, 
+            axis lines = left,
+            xmin = 0, xmax = 10,
+            ymin = 0, ymax = 5,
+            xtick = {1, 3, 5, 7, 9},
+            xticklabels = {$a = x_0$, $x_1$, $x_2$, $x_3$, $b = x_4$},
+            ytick = \empty,
+            domain = 0:10,
+            clip = false
+        ]
+        \addplot[color = black, samples = 50] {f(x)};
+        \addplot[color = black, const plot mark left, samples = 5, domain = 1:9] {f(x)};
+        \addplot[name path = f, color = black, const plot mark right, samples = 5, domain = 1:9] {f(x)};
+        
+        \path[name path = min]
+            (1, {f(3)}) -- (3, {f(3)}) -- (3, {f(5)}) -- (5, {f(5)}) -- (7, {f(5)}) --  (7, {f(9)}) --  (9, {f(9)});
+        \path[name path = axis] (1, 0) -- (9, 0);
+        \addplot[color = black, pattern = north east lines] 
+            fill between [of = axis and min];
+
+        \foreach \x in {1,3,...,9} {
+            \edef\tmp{ \noexpand\draw (\x, 0) -- (\x, {f(\x)}); }
+            \tmp
+        }
+        
+        \draw[decorate, decoration = {brace, amplitude = 5pt, raise = 1pt}] 
+            (7, 0) -- coordinate [yshift = -6pt] (B) (5, 0);
+        \draw[->] (B) -- ++(0, -1) node[anchor = north] {\shortstack{$\mu(Z)$ \\ (breitestes Rechteck)}};
+
+        \end{axis}
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    Unterteilung in Rechtecke, die die Fläche nach oben und unten annähern. \\
+
+    Bilde Grenzwerte für $\mu(Z) \to 0$, d.h. man verfeinert die Unterteilung sukzessive.
+\end{minipage}
+
+\subsection{Definition: Zerlegung}
+Eine Zerlegung von $[a, b]$ ist eine Menge $Z = \{x_0, x_1, ..., x_n\} \subseteq [a, b]$ \\
+mit $x_0 = a < x_1 < x_2 < ... < x_n = b$
+
+$\mathfrak{Z}[a, b]$ heißt die Menge aller Zerlegungen von $[a, b]$.
+
+Die Länge des größten Teilintervalls in $\{[x_{i - 1}, x_i] \quad i = 1, ..., n\}$ heißt
+Feinheit der Zerlegung. Bezeichnung: $\mu(Z)$.
+\ifdefined\MAINDOC\else
+\end{document}
+\fi
